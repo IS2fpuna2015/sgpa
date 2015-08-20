@@ -1,0 +1,71 @@
+{% extends 'Sistema/principal.html' %}
+
+{% block content %}
+    {% if error == 'falta_sprint' %}
+            <div class="alert alert-danger alert-dismissible " role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> Existen User Stories no finalizados, realize la creacion de un sprint nuevo para poder finalizar el actual y reasignar los US no finalizados.
+                                    <br> Tenga en cuenta que la duracion minima del proximo sprint debera ser de {{mayor_size}} dias.
+            </div>
+        {% endif %}
+
+
+
+<div class="jumbotron">
+    <div align="center">
+        <h2>Reasignacion de US a Sprint {{prox_sprint.nombre_sprint}}</h2><br>
+        Los US que son listados seran asignados al sprint mas proximo con los mismos detalles actuales.<br><br><br>
+    </div>
+    <div class="row">
+
+
+            <div class="col-md-12">
+
+                <div style=" border: 1px solid #000000; OVERFLOW-Y:scroll; WIDTH:100%; text-align: left; HEIGHT:330px; background-color:#ffffff">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr class="text-info">
+                            <th  style="text-align: center;">US disponibles</th>
+                            <th  style="text-align: center;">Duracion del US en dias</th>
+                            <th  style="text-align: center;">Prioridad de US</th>
+                            <th  style="text-align: center;">Porcentaje completado</th>
+                            <th  style="text-align: center;">Horas trabajadas</th>
+                            <th  style="text-align: center;">Ultima actividad</th>
+                            <th  style="text-align: center;">Ultimo estado</th>
+                        </tr>
+                        </thead>
+                        <tbody  id="rows" name="list" multiple="multiple" >
+                        {% for item in lista %}
+                        <tr >
+                            <td  class="datos" align="center" name="us_nombre" value="{{item.0.id}}">{{item.0.nombre.lower}}</td>
+                            <td  class="datos" align="center" name="us_size" value="{{item.0.id}}">{{item.0.size}}</td>
+                            <td  class="datos" align="center" name="us_size" value="{{item.0.id}}" >
+                                {% if item.0.prioridad == 'ALTA'%}
+                                <div class="btn btn-danger">{{item.0.prioridad.lower}}</div>
+                                {%else%}
+                                    {{item.0.prioridad.lower }}
+                                {% endif %}
+
+                            </td>
+                            <td  class="datos" align="center" name="porcentaje_realizado" value="{{item.0.porcentaje_realizado}}">{{item.0.porcentaje_realizado}} %</td>
+                            <td  class="datos" align="center" name="horas_dedicadas" value="horas_dedicadas">{{item.0.horas_dedicadas}} hs</td>
+                            <td  class="datos" align="center" name="id_actividad" value="id_actividad">{{item.1.nombre_actividad}}</td>
+                            <td  class="datos" align="center" name="horas_dedicadas" value="horas_dedicadas">{{item.0.estado_en_actividad}}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                        </table>
+                </div>
+            </div>
+
+    </div>
+    {% if prox_sprint != null %}
+    <div align="center"><br><a href="{% url 'asingarUsASprint' prox_sprint.id %}" class="btn btn-info">Asignacion de US a Sprint {{prox_sprint.nombre_sprint}}</a>
+        <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+

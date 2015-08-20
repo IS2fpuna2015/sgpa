@@ -1,0 +1,50 @@
+{% extends 'Sistema/principal.html' %}
+
+{% block content %}
+
+
+<div style="text-align: center;" class="panel-body jumbotron">
+    <h2>Lista de Releases de {{nombre_proyecto}}</h2>
+    <br>
+    <div style=" display:inline;">
+        <form method='post'>{% csrf_token %}
+
+            {{ form }}
+            <input type='submit' value='Buscar'>
+
+        </form>
+    </div>
+    <div class="panel-body jumbotron">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr class="text-info">
+                    <th style="text-align: center;">Nombre</th>
+                    <th style="text-align: center;">Version</th>
+                    <th style="text-align: center;">Fecha de Release</th>
+                    {% if perms.GestiondeReleases.consultar_release %}
+                    <th style="text-align: center;">Consultar</th>{% endif %}
+                </tr>
+                </thead>
+                <tbody id="rows">
+                {% for release in releases %}
+                <tr >
+                    <td>{{ release.nombre}}</td>
+                    <td>{{ release.version}}</td>
+                    <td>{{ release.fecha | date:'d/m/y' }} </td>
+                    {% if perms.GestiondeReleases.consultar_release %}
+                    <td><a href="{% url 'consultar_release' release.id %}" class="btn btn-info">Consultar</a>
+                    </td>{% endif %}
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div align="center">
+        <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+    </div>
+</div>
+
+
+{% endblock %}

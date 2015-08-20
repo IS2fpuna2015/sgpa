@@ -1,0 +1,56 @@
+{% extends 'Sistema/principal.html' %}
+
+
+
+{% block content %}
+    <div style=" border: 1px solid #000000; OVERFLOW-Y:scroll; WIDTH:100%; text-align: left; HEIGHT:460px; background-color:#ffffff">
+<div  style="text-align: center;" class="panel-body jumbotron">
+
+    <div class="panel-body jumbotron">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr class="text-info">
+                    <th  style="text-align: center;">Registro de auditoria</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <div  style=" display:inline;"  >
+            <form method='post'>{% csrf_token %}
+                {{ form }}
+                <input type='submit' value='Buscar'>
+            </form>
+        </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr class="text-info">
+                        <div class="row">
+                            <div class="col-md-3">{% if perms.GestiondeSistema.consultar_auditoria  %}<th>Hora y fecha</th>{% endif %}</div>
+                            <div class="col-md-3">{% if perms.GestiondeSistema.consultar_auditoria   %}<th  style="text-align: left;">Accion</th>{% endif %}</div>
+                            <div class="col-md-3">{% if perms.GestiondeSistema.consultar_auditoria   %}<th  style="text-align: left;">Usuario responsable</th>{% endif %}</div>
+                            <div class="col-md-3">{% if perms.GestiondeSistema.consultar_auditoria   %}<th  style="text-align: left;">Observacion</th>{% endif %}</div>
+                        </div>
+                    </tr>
+                    </thead>
+                    <tbody  id="rows">
+
+                    {% for item in elementos %}
+                    <tr>
+                        {% if perms.GestiondeSistema.consultar_auditoria   %}<td> {{item.hora_dia}} </td>{% endif %}
+                        {% if perms.GestiondeSistema.consultar_auditoria %}<td   style="text-align: left;"> {{item.accion}}  </td>{% endif %}
+                        {% if perms.GestiondeSistema.consultar_auditoria   %}<td style="text-align: left;"> {{item.nombre_usuario}}  </td>{% endif %}
+                        {% if perms.GestiondeSistema.consultar_auditoria   %}<td style="text-align: left;"> {{item.observacion}}  </td>{% endif %}
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+</div>
+</div>
+</div>
+{% endblock %}

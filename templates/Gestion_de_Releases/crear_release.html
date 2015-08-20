@@ -1,0 +1,85 @@
+{% extends 'Sistema/principal.html' %}
+
+{% block content %}
+
+<div style="text-align: center;" class="jumbotron">
+    <h2><label>Creacion de Release en {{nombre_proyecto}}</label></h2>
+    <h3>{{ version_anterior }}</h3>
+    {% if error == 'campos' %}
+        <div class="alert alert-danger alert-dismissible " role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <strong>Error!</strong> Todos los campos son Obligatorios.
+        </div>
+    {% endif %}
+    {% if error == 'seleccion_us' %}
+        <div class="alert alert-danger alert-dismissible " role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <strong>Error!</strong> Debe seleccionar al menos un userstory.
+        </div>
+    {% endif %}
+
+    <form action="" method="post">{% csrf_token %}
+        <div class="panel-body jumbotron" align="center">
+            <div align="center" class="table-responsive container col-md-12">
+                <table class="table table-hover">
+                    <thead>
+                    <tr class="text-info"><h3>Datos del Release</h3></tr>
+                    </thead>
+                    <tbody id="rows">
+                    <tr>
+                        <td><label>Nombre del Release: </label></td>
+                        <td><input id="nombre_release" type="text" name="nombre_release" ></td>
+                    </tr>
+                    <tr>
+                        <td><label>Version: </label></td>
+                        <td><input id="version_release" type="text" name="version_release"></td>
+                    </tr>
+                    <tr>
+                        <td><label>Descripcion: </label></td>
+                        <td><textarea id="descripcion_release"  name="descripcion_release" cols="30" rows="4"></textarea>
+                        </td>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-responsive container col-md-12">
+                <div style="height: 250px; overflow: auto">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr class="text-info"><h3>Listado de User Stories Aprobados</h3></tr>
+                        <tr class="text-info">
+                            <th>Seleccionar</th>
+                            <th>Nombre</th>
+                            <th>Codigo</th>
+                            <th>Prioridad</th>
+                            <th>Sprint</th>
+                        </tr>
+                        </thead>
+                        <tbody id="rows" name="seleccionar_us" multiple="multiple">
+                        {% for us in userstories %}
+                            <tr value="{{ us.id }}">
+                                <td><input type="checkbox" name="us_seleccionados" value="{{ us.id }}"></td>
+                                <td value="{{ us.id }}">{{ us.nombre }}</td>
+                                <td value="{{ us.id }}">{{ us.codigo }}</td>
+                                <td value="{{ us.id }}">{{ us.prioridad }}</td>
+                                <td value="{{ us.id }}">{{ us.nombre_sprint }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div align="center">
+            <input type="submit" class="btn btn-info" name="Guardar" value="Guardar">
+            <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Cancelar">
+        </div>
+    </form>
+</div>
+
+{% endblock %}

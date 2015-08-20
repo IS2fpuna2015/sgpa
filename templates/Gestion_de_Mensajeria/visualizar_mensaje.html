@@ -1,0 +1,44 @@
+{% extends 'Sistema/principal.html' %}
+
+{% block content %}
+
+    <div style="text-align: center;" class="jumbotron">
+        <h2>Visualizacion de Mensaje</h2>
+        <br>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <form id="formulario" method="post" action="">{% csrf_token %}
+                <div id="mensaje" align="center" class="table-responsive container col-md-7">
+                    <table class="table table-hover" align="center">
+                        <tr>
+                            <td><label>Remitente:</label></td>
+                            <td>{{  mensaje_obj.remitente }}</td>
+                        </tr>
+                        <tr>
+                            <td><label>Asunto:</label></td>
+                            <td>{{ mensaje_obj.asunto }}</td>
+                        </tr>
+                        <tr>
+                            <td><label>Hora:</label></td>
+                            <td>{{ mensaje_obj.fecha_envio | time:"H:i"}}</td>
+                        </tr>
+                        <tr>
+                            <td><label>Fecha:</label></td>
+                            <td>{{ mensaje_obj.fecha_envio | date:"d/m/y" }}</td>
+                        </tr>
+                        <tr>
+                            <td><label>Mensaje:</label></td>
+                            <td><textarea rows="4" cols="40" readonly>{{ mensaje_obj.mensaje }}</textarea></td>
+                        </tr>
+
+                    </table>
+                    <div>
+                        <input type="submit" class="btn btn-info" name="Eliminar" value="Eliminar">
+                        <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+                    </div>
+                </div>
+            </form>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+{% endblock %}

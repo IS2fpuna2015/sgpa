@@ -1,0 +1,70 @@
+{% extends 'Sistema/principal.html' %}
+
+
+
+{% block content %}
+
+
+<div  style="text-align: center;" class="panel-body jumbotron">
+    <h2>Lista de Actividades</h2><br>
+    <h3>Nombre del Flujo: {{ flujo.nombre_flujo }}</h3>
+    <div  style=" display:inline;"  >
+            <a href="{% url 'crear_actividad'  id_proyecto id_flujo%}" class="btn btn-info">Nueva Actividad</a>
+    </div>
+
+    <div class="panel-body jumbotron">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr class="text-info">
+                    <th  style="text-align: center;">Nombre de Actividad</th>
+                    <th  style="text-align: center;">Estado Perteneciente</th>
+                    <th  style="text-align: center;">Secuencia</th>
+                    <th  style="text-align: center;">Eliminar Actividad</th>
+                    <th  style="text-align: center;">Modificar Actividad</th>
+                </tr>
+                </thead>
+                <tbody  id="rows">
+                {% for actividad_ciclo in actividades_todo %}
+                <tr id="{{ user.id }}">
+                    <td  class="datos">{{ actividad_ciclo.nombre_actividad }}</td>
+                    <td  class="datos">{{ actividad_ciclo.estado_actividad }}</td>
+                    <td  class="datos">{{ actividad_ciclo.orden_actividad }}</td>
+                    <td><a href="{% url 'eliminaractividad'  id_proyecto id_flujo actividad_ciclo.id  %}" class="btn btn-info">Eliminar</a></td>
+                    <td><a href="{% url 'modificar_actividad' id_proyecto id_flujo actividad_ciclo.id %}" class="btn btn-info">Modificar</a></td>
+
+                    <!--<td><a href="#" class="btn btn-info">Act</a></td>-->
+                </tr>
+                {% endfor %}
+                {% for actividad_ciclo in actividades_doing %}
+                <tr id="{{ user.id }}">
+                    <td  class="datos">{{ actividad_ciclo.nombre_actividad }}</td>
+                    <td  class="datos">{{ actividad_ciclo.estado_actividad }}</td>
+                    <td  class="datos">{{ actividad_ciclo.orden_actividad }}</td>
+                    <td><a href="{% url 'eliminaractividad'  id_proyecto id_flujo actividad_ciclo.id  %}" class="btn btn-info">Eliminar</a></td>
+                    <td><a href="{% url 'modificar_actividad' id_proyecto id_flujo actividad_ciclo.id %}" class="btn btn-info">Modificar</a></td>
+
+                    <!--<td><a href="#" class="btn btn-info">Act</a></td>-->
+                </tr>
+                {% endfor %}
+                {% for actividad_ciclo in actividades_done %}
+                <tr id="{{ user.id }}">
+                    <td  class="datos">{{ actividad_ciclo.nombre_actividad }}</td>
+                    <td  class="datos">{{ actividad_ciclo.estado_actividad }}</td>
+                    <td  class="datos">{{ actividad_ciclo.orden_actividad }}</td>
+                    <td><a href="{% url 'eliminaractividad'  id_proyecto id_flujo actividad_ciclo.id  %}" class="btn btn-info">Eliminar</a></td>
+                    <td><a href="{% url 'modificar_actividad' id_proyecto id_flujo actividad_ciclo.id %}" class="btn btn-info">Modificar</a></td>
+
+                    <!--<td><a href="#" class="btn btn-info">Act</a></td>-->
+                </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+            <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'Sistema/principal.html' %}
+
+{% block content %}
+{{ formulario.media }}
+<div style="text-align: center;" class="jumbotron">
+    <h2>Sprint   {{sprint.nombre_sprint}}</h2>
+    <div class="row">
+        <div class="col-md-1"></div>
+
+        <div class="table-responsive col-md-4"  >
+            <form id="formulario" method="post" action="">{% csrf_token %}
+                <table class="table table-hover" align="center">
+                    <thead>
+                    <tr class="text-info"><th>Informacion</th>
+
+                    </tr>
+                    </thead>
+                    <tbody id="rowsdatosproyecto" align="center">
+                    <tr>
+                        <td><label>Fecha de inicio</label></td>
+                        <td>{{ sprint.fecha_inicio }}</td>
+                    </tr>
+                    <tr>
+                        <td><label>Fecha de finalizacion</label></td>
+                        <td>{{ sprint.fecha_fin }}</td>
+                    </tr>
+                    <tr>
+                        <td><label>Estado de sprint</label></td>
+                        <td>{{ sprint.estado }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-1"></div>
+        <div class=" col-md-4"  >
+            <table class="table table-hover" align="center">
+                    <thead>
+                    <tr class="text-info"><th>User Stories asignados a sprint</th>
+                        <th>Usuarios responsables</th>
+                    </tr>
+
+                    </thead>
+                    <tbody id="rowsdatosproyecto" align="center">
+                    </tbody>
+                </table>
+            <div style=" border: 1px solid #000000; OVERFLOW-Y:scroll; WIDTH:100%; text-align: left; HEIGHT:160px; background-color:#ffffff">
+            <table class="table table-hover" align="center">
+                    <thead>
+                    <tr class="text-info">
+                    </tr>
+                    </thead>
+                    <tbody id="rowsdatosproyecto" align="center">
+                    {% for us in userStories%}
+                    <tr>
+                        <td>{{us.nombre}}</td>
+                        <td>{{us.usuario_asignado}}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                </div>
+        </div>
+
+        <div class="col-md-1"></div>
+
+    </div>
+    </form>
+    <div >
+        <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+    </div>
+
+</div>
+{% endblock %}
+
+

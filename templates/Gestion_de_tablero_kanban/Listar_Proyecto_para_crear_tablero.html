@@ -1,0 +1,50 @@
+{% extends 'Sistema/principal.html' %}
+
+
+
+{% block content %}
+{% if perms.GestiondeTableroKanban.crear_tablero_kanban  %}
+<div  style="text-align: center;" class="panel-body jumbotron">
+    <div>
+        <h2>Seleccione el proyecto para crear el tablero kanban</h2><br>
+    </div>
+    <div  style=" display:inline;"  >
+        <form method='post'>{% csrf_token %}
+
+            {{ form }}
+            <input type='submit' value='Buscar'>
+
+        </form>
+    </div>
+    <div class="panel-body jumbotron">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr class="text-info">
+                    <th  style="text-align: center;">Nombre de Proyecto</th>
+                     <th  style="text-align: center;">Generar tablero kanban</th>
+                    <th  style="text-align: center;">Tablero kanban</th>
+                </tr>
+                </thead>
+                <tbody  id="rows">
+                {% for proyecto in proyectos %}
+                <tr>
+                    <td  class="datos">{{ proyecto.nombre_proyecto }}</td>
+                    <td><a href="{% url 'crear_tablero_kanban' proyecto.id %}" class="btn btn-info">Generar tablero kanban</a></td>
+                    <td><a href="{% url 'listar_tablero_kanban_proyecto' proyecto.id %}"  class="btn btn-info">Listar tablero kanban</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endif %}
+{%  if perms.GestiondeTableroKanban.crear_tablero_kanban == False %}
+<div  style="text-align: center;" class="jumbotron">
+    <h2>No posee permisos para acceder a esta seccion</h2>
+    <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+</div>
+{% endif  %}
+
+{% endblock %}

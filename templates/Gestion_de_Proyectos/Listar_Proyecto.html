@@ -1,0 +1,76 @@
+{% extends 'Sistema/principal.html' %}
+
+{% block content %}
+
+
+<div style="text-align: center;" class="panel-body jumbotron">
+    <h2>Lista de Proyectos</h2>
+    <br>
+    <div style=" display:inline;">
+        <form method='post'>{% csrf_token %}
+
+            {{ form }}
+            <input type='submit' value='Buscar'>
+
+        </form>
+    </div>
+    {% if usuario != 'NULL' %}
+    <div class="panel-body jumbotron">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr class="text-info">
+                    <th style="text-align: center;">Nombre de Proyecto</th>
+                    {% if perms.GestiondeProyectos.modificar_proyecto %}
+                    <th style="text-align: center;">Modificacion de Proyecto</th>{% endif %}
+                    {% if perms.GestiondeProyectos.consulta_proyecto %}
+                    <th style="text-align: center;">Consulta de Proyecto</th>{% endif %}
+                    {% if perms.GestiondeUserStories.listar_userstories %}
+                    <th style="text-align: center;">Listar US del proyecto</th>{% endif %}
+                    <th style="text-align: center;">Product Backlog</th>
+                    {% if perms.GestiondeProyectos.generar_reporte %}
+                    <th style="text-align: center;">Generar Reporte</th>{% endif %}
+                    {% if perms.GestiondeBurndownChart.modificar_burndown_chart_proyecto  %}<th style="text-align: center;">Actualizar Burndown Chart</th>{% endif %}
+                    {% if perms.GestiondeBurndownChart.consulta_burndown_chart_proyecto  %}<th style="text-align: center;">Visualizar Burndown Chart</th>{% endif %}
+                </tr>
+                </thead>
+                <tbody id="rows">
+                {% for proyecto in proyectos %}
+                <tr id="{{ user.id }}">
+                    <td class="datos">{{ proyecto.nombre_proyecto }}</td>
+                    {% if perms.GestiondeProyectos.modificar_proyecto%}
+                    {% if proyecto.estado_proyecto == "FINALIZADO" %}
+                    <td>Proyecto finalizado</td>
+                    {% elif  proyecto.estado_proyecto == "CANCELADO" %}
+                    <td>Proyecto cancelado</td>
+                    {% else %}
+                    <td><a href="{% url 'modificarproyecto' proyecto.id %}" class="btn btn-info">Modificar</a>
+                    </td>
+                    {% endif %}
+                    {% endif %}
+                    {% if perms.GestiondeProyectos.consulta_proyecto %}
+                    <td><a href="{% url 'consultar_proyecto' proyecto.id %}" class="btn btn-info">Consultar</a>
+                    </td>{% endif %}
+                    {% if perms.GestiondeUserStories.listar_userstories %}
+                    <td><a href="{% url 'listar_userstories_proyecto' proyecto.id %}" class="btn btn-info">Listar
+                        US</a></td>{% endif %}
+                    <td><a href="{% url 'product_backlog' proyecto.id %}" class="btn btn-info">Backlog</a></td>
+                    {% if perms.GestiondeProyectos.generar_reporte %}
+                    <td><a href="{% url 'generar_reporte' proyecto.id %}"
+                           class="btn btn-info">Reporte</a></td>{% endif %}
+                    {% if perms.GestiondeBurndownChart.modificar_burndown_chart_proyecto  %}<td><a href="{% url 'actualizarburndownproyecto' proyecto.id %}" class="btn btn-info">Actualizar</a></td></td>{% endif %}
+                    {% if perms.GestiondeBurndownChart.consulta_burndown_chart_proyecto  %}<td><a href="{% url 'burndownchartproyecto' proyecto.id %}" class="btn btn-info">Visualizar</a></td></td>{% endif %}
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div align="center">
+            <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+
+{% endblock %}

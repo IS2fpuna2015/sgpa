@@ -1,0 +1,136 @@
+{% extends 'Sistema/principal.html' %}
+
+{% block content %}
+<style type="text/css" media="screen">
+    select { width: 100%; margin-right: 20px; }
+
+</style>
+<script>
+$(document).ready(function(){
+
+
+    $("[data-toggle=tooltip]").tooltip();
+});
+</script>
+{% if error == 'comentario' %}
+<div class="alert alert-danger alert-dismissible " role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+    <strong>Error!</strong> Debe agregar un comentario para realizar el cambio de estado de un User Story.
+</div>
+{% endif %}
+<div  style="text-align: center;" class="jumbotron">
+    <h2>Cambio de estado o actividad de US {{us.nombre}}</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <form action="" method="post" style="text-align:left; ">{% csrf_token %}
+                <div  class="panel-body jumbotron"  align="center" >
+                    <div align="center" class="table-responsive container">
+
+                        <table class="table table-hover">
+                            <thead>
+                            <tr class="text-info">
+                            </tr>
+                            </thead>
+                            <tbody id="rows" >
+                            <tr  >
+                                <td><label>Nombre del US</label></td>
+                                <td>{{us.nombre}}</td>
+                            </tr>
+                            <tr  >
+                                <td><label>Usuario asignado</label></td>
+                                <td>{{us.usuario_asignado.username}}</td>
+                            </tr>
+                             <tr  >
+                                <td><label>Porcentaje realizado (%)</label></td>
+                                <td><input type="text" style="width:70%" name="porcentaje_realizado" value="{{us.porcentaje_realizado}} "></td>
+                            </tr>
+                             <tr  >
+                                <td><label>Horas dedicadas (%)</label></td>
+                                <td><input type="text" style="width:70%" name="horas_dedicadas" value="{{us.horas_dedicadas}} "></td>
+                            </tr>
+                            {% if rol == "Scrum Master" or us.estado_en_actividad == 'Done'%}
+                            <tr>
+                                {% if perms.GestiondeTableroKanban.cambiar_us_de_actividad %}
+                                <td ><label>Seleccione la actividad</label> </td>
+                                <td>
+                                    {% if rol == "Scrum Master" %}
+                                    <select name="actividad" id="mySelect_sprint" onchange="getSelectedValue();">
+                                        {% for actividad in actividades %}
+                                        <option  name="{{actividad.id}}" value="{{actividad.id}}">{{actividad.nombre_actividad}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    {% endif %}
+                                    {% if rol == "Desarrollador" and us.estado_en_actividad == "Done" and us_completado == False%}
+                                    <select name="actividad" id="mySelect_sprint" onchange="getSelectedValue();">
+                                        <option  name="{{siguiente_actividad.id}}" value="{{siguiente_actividad.id}}">{{siguiente_actividad.nombre_actividad}}</option>
+                                    </select>
+                                    {% elif us_completado == True  and rol == 'Desarrollador' %}
+                                        US Completado, no se permiten modificaciones por parte del Desarrollador.
+                                    {%endif%}
+                                </td>
+                                {% endif%}
+                            </tr>
+                            {%endif%}
+                            {% if rol == "Scrum Master" or us.estado_en_actividad != 'Done'%}
+                            <tr>
+                                {% if perms.GestiondeTableroKanban.cambiar_us_de_estado %}
+                                <td ><label>Seleccione el estado dentro de la actividad</label> </td>
+                                <td>
+                                    {% if rol == 'Scrum Master' %}
+                                    <select name="estado" id="mySelect_sprint" onchange="getSelectedValue();">
+                                        <option  name="ToDo" value="ToDo">ToDo</option>
+                                        <option  name="Doing" value="Doing">Doing</option>
+                                        <option  name="Done" value="Done">Done</option>
+                                    </select>
+                                    {% elif rol == 'Desarrollador' and us.estado_en_actividad == 'ToDo' %}
+                                    <select name="estado" id="mySelect_sprint" onchange="getSelectedValue();">
+                                        <option  name="ToDo" value="ToDo">ToDo</option>
+                                        <option  name="Doing" value="Doing">Doing</option>
+                                    </select>
+                                    {% elif rol == 'Desarrollador' and us.estado_en_actividad == 'Doing' %}
+                                    <select name="estado" id="mySelect_sprint" onchange="getSelectedValue();">
+                                        <option  name="Doing" value="Doing">Doing</option>
+                                        <option  name="Done" value="Done">Done</option>
+                                    </select>
+                                    {% elif rol == 'Desarrollador' and us.estado_en_actividad == 'Done' %}
+                                    <select name="estado" id="mySelect_sprint" onchange="getSelectedValue();">
+                                        <option  name="Done" value="Done">Done</option>
+                                    </select>
+                                    {% endif%}
+                                </td>
+                                {% endif   %}
+                            </tr>
+                            {%endif%}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+        </div>
+
+        <div class="col-md-4"><br>
+            <div style="width:200px;height:auto;">
+                <div >
+                    <input style="width:400px;height:50px;" type="text" name="comentario" placeholder="Agregue una nota para que el US cambie de estado o actividad." />
+                </div>
+                <div class="form-group">
+                </div>
+            </div><br>
+            <input type="file" name="myfile" /></div>
+
+        <div class="col-md-2">
+
+        </div>
+    </div>
+
+</div>
+<div align="center">
+
+    <input type="submit" class="btn btn-info"  name="Guardar" value="Guardar">
+    <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+</div>
+
+</form>
+
+{% endblock %}

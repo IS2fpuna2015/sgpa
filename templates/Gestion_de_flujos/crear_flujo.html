@@ -1,0 +1,36 @@
+{% extends 'Sistema/principal.html' %}
+
+{% block content %}
+{% if error == 'nombre' %}
+<div class="alert alert-danger alert-dismissible " role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+    <strong>Error!</strong> Ya existe un flujo con el mismo nombre en este proyecto, seleccione otro
+</div>
+{% endif %}
+
+
+{{ formulario.media }}
+<div style="text-align: center;" class="jumbotron">
+    <h2>Creacion de Flujo para proyecto {{nombre_proyecto}}</h2>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <form id="formulario" method="post" action="">{% csrf_token %}
+                <table class="table table-hover" align="center">
+                    <div align="center">
+                        {{ formulario }}
+                    </div>
+                </table>
+                <div >
+                    <input type="submit" class="btn btn-info" name="Guardar" value="Guardar">
+                    <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+                </div>
+        </div>
+        <div class="col-md-4"></div><br><br><br>
+
+    </div>
+    </form>
+
+</div>
+{% endblock %}

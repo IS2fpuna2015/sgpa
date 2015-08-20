@@ -1,0 +1,38 @@
+{% extends 'Sistema/principal.html' %}
+
+
+
+{% block content %}
+
+
+<div  style="text-align: center;" class="panel-body jumbotron">
+
+    <div class="panel-body jumbotron">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr class="text-info">
+                    <th  style="text-align: center;">Nombre de flujo</th>
+                    {% if perms.GestiondeFlujos.modificar_flujo  %}<th  style="text-align: center;">Modificar Flujo</th>{% endif %}
+                    {% if perms.GestiondeFlujos.consulta_flujo  %}<th  style="text-align: center;">Consulta de Flujo</th>{% endif %}
+                </tr>
+                </thead>
+                <tbody  id="rows">
+                {% for item in flujos %}
+                <tr id="{{ user.id }}">
+                    <td  class="datos">{{ item.nombre_flujo  }}</td>
+                    {% if perms.GestiondeFlujos.modificar_flujo  %}<td><a href="{% url 'modificar_flujo' item.id_Proyecto_id item.id %}" class="btn btn-info">Modificar</a></td>{% endif %}
+                    {% if perms.GestiondeFlujos.consulta_flujo  %}<td><a href="{% url 'consultar_flujo'  item.id_Proyecto_id item.id   %}" class="btn btn-info">Consultar</a></td>{% endif %}
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div align="center>">
+        <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+    </div>
+</div>
+
+
+{% endblock %}

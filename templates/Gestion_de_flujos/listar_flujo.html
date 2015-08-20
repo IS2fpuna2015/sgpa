@@ -1,0 +1,56 @@
+{% extends 'Sistema/principal.html' %}
+
+
+
+{% block content %}
+
+
+<div  style="text-align: center;" class="panel-body jumbotron">
+    <h2>Lista de Flujos del proyecto {{nombre_proyecto}}</h2>
+    {% if error == 'ninguno' %}
+    <div class="alert  alert-success alert-dismissible " role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Usuario creado de forma exitosa.</strong> .
+    </div>
+    {%endif%}
+    <div  style=" display:inline;"  >
+        <form method='post'>{% csrf_token %}
+            {{ formulario }}
+            <input type='submit' value='Buscar'>
+        </form>
+    </div>
+    {% if usuario != 'NULL' %}
+    <div class="panel-body jumbotron">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr class="text-info">
+                    <th  style="text-align: center;">Nombre de Flujo</th>
+                    {% if perms.GestiondeFlujos.modificar_flujo  %}<th  style="text-align: center;">Modificar Flujo</th>{% endif %}
+                    {% if perms.GestiondeFlujos.consulta_flujo  %}<th  style="text-align: center;">Consulta de Flujo</th>{% endif %}
+                    {% if perms.GestiondeFlujos.listar_actividad  %}<th  style="text-align: center;">Actividades</th>{% endif %}
+                </tr>
+                </thead>
+                <tbody  id="rows">
+                {% for flujo in flujos %}
+                <tr id="{{ user.id }}">
+                    <td  class="datos">{{ flujo.nombre_flujo }}</td>
+                    {% if perms.GestiondeFlujos.modificar_flujo  %}<td><a href="{% url 'modificar_flujo' id_proyecto flujo.id %}" class="btn btn-info">Modificar</a></td>{% endif %}
+                    {% if perms.GestiondeFlujos.consulta_flujo  %}<td><a href="{% url 'consultar_flujo'  id_proyecto flujo.id   %}" class="btn btn-info">Consultar</a></td>{% endif %}
+                    {% if perms.GestiondeFlujos.listar_actividad  %}<td><a href="{% url 'listar_actividad' id_proyecto flujo.id %}" class="btn btn-info">Actividades</a></td>{% endif %}
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div>
+        <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+    </div>
+    {% else %}
+    <p>Seleccion Invalida</p>
+    {% endif %}
+</div>
+
+
+{% endblock %}

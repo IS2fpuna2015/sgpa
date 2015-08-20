@@ -1,0 +1,48 @@
+{% extends 'Sistema/principal.html' %}
+
+
+
+{% block content %}
+
+
+<div  style="text-align: center;" class="panel-body jumbotron">
+    <h2>Lista de User Stories del proyecto {{nombre_proyecto}}</h2>
+    <div  style=" display:inline;"  >
+        <form method='post'>{% csrf_token %}
+            {{ formulario }}
+            <input type='submit' value='Buscar'>
+        </form>
+    </div>
+    <div class="panel-body jumbotron">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr class="text-info">
+                    <th  style="text-align: center;">Nombre de User Story</th>
+                    {% if perms.GestiondeUserStories.modificar_userstories and usuario_es_scrum %}<th  style="text-align: center;">Modificar User Story</th>{% endif %}
+                     {% if perms.GestiondeUserStories.consulta_userstories %}<th  style="text-align: center;">Consulta de user Story</th>{% endif %}
+                    {% if perms.GestiondeUserStories.consulta_userstories %}<th  style="text-align: center;">Comentarios de user Story</th>{% endif %}
+                    {% if perms.GestiondeUserStories.consulta_userstories %}<th  style="text-align: center;">Asignado a Sprint</th>{% endif %}
+                </tr>
+                </thead>
+                <tbody  id="rows">
+                {% for userstory in userstories %}
+                <tr id="{{ userstory.id }}">
+                    <td  class="datos">{{ userstory.nombre }}</td>
+                    {% if perms.GestiondeUserStories.modificar_userstories and usuario_es_scrum %}<td><a href="{% url 'modificar_userstory' userstory.id %}" class="btn btn-info">Modificar</a></td>{% endif %}
+                    {% if perms.GestiondeUserStories.consulta_userstories %}<td><a href="{% url 'consultar_userstory' userstory.id  %}" class="btn btn-info ">Consultar</a></td>{% endif %}
+                    <td><a href="{% url 'comentario_userstory' userstory.id  %}" class="btn btn-info ">Ver comentarios</a></td>
+                    {% if perms.GestiondeUserStories.consulta_userstories %}<td>{{userstory.nombre_sprint}}</td>{% endif %}
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div align="center">
+        <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+    </div>
+</div>
+
+
+{% endblock %}

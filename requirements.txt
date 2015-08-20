@@ -1,0 +1,4 @@
+django==1.7.4
+reportlab==3.2.0
+psycopg2
+

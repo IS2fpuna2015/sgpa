@@ -1,0 +1,34 @@
+{% extends 'Sistema/principal.html' %}
+
+
+
+{% block content %}
+<div class="jumbotron">
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+        <tr class="text-info">
+            <div class="row">
+                <div class="col-md-4"> <th>Hora y fecha</th> </div>
+                <div class="col-md-4"> <th>Autor</th> </div>
+                <div class="col-md-4"> <th>Comentario</th> </div>
+            </div>
+        </tr>
+        </thead>
+        <tbody  id="rows">
+
+        {% for item in elementos %}
+        <tr>
+            <td> {{item.fecha}} </td>
+            <td> {{item.autor}} </td>
+            <td> {{item.comentario}} </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+    <div align="center"><br><br>
+        <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'Sistema/principal.html' %}
+
+
+
+{% block content %}
+<div  style="text-align: center;" class="panel-body jumbotron">
+    <div>
+        <h2>Seleccione el proyecto para listar los flujos</h2><br>
+    </div>
+    <div  style=" display:inline;"  >
+        <form method='post'>{% csrf_token %}
+
+            {{ form }}
+            <input type='submit' value='Buscar'>
+
+        </form>
+    </div>
+    <div class="panel-body jumbotron">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr class="text-info">
+                    <th  style="text-align: center;">Nombre de Proyecto</th>
+                    <th  style="text-align: center;">Listar Flujo del proyecto</th>
+                </tr>
+                </thead>
+                <tbody  id="rows">
+                {% for proyecto in proyectos %}
+                <tr>
+                    <td  class="datos">{{ proyecto.nombre_proyecto }}</td>
+                    <td><a href="{% url 'listar_flujo' proyecto.id %}" class="btn btn-info">Listar Flujo</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div align="center">
+        <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+    </div>
+</div>
+
+{% endblock %}

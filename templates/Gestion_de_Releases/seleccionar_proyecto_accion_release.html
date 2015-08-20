@@ -1,0 +1,44 @@
+{% extends 'Sistema/principal.html' %}
+
+
+
+{% block content %}
+<div  style="text-align: center;" class="panel-body jumbotron">
+    <div>
+        {% if tipo_accion == 'creacion' %}<h2>Seleccione Proyecto para Crear Release</h2><br>
+        {% elif tipo_accion == 'lista' %}<h2>Seleccione Proyecto para Listar Releases</h2><br>{% endif %}
+    </div>
+    <div  style=" display:inline;"  >
+        <form method='post'>{% csrf_token %}
+            {{ form }}
+            <input type='submit' value='Buscar'>
+        </form>
+    </div>
+    <div class="panel-body jumbotron">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr class="text-info">
+                    <th  style="text-align: center;">Nombre de Proyecto</th>
+                    {% if tipo_accion == 'creacion' and perms.GestiondeReleases.crear_release %}<th style="text-align: center;">Crear Release</th>{% endif %}
+                    {% if tipo_accion == 'lista' and perms.GestiondeReleases.listar_release%}<th  style="text-align: center;">Listar Releases</th>{% endif %}
+                </tr>
+                </thead>
+                <tbody  id="rows">
+                {% for proyecto in proyectos %}
+                <tr>
+                    <td  class="datos">{{ proyecto.nombre_proyecto }}</td>
+                    {% if tipo_accion == 'creacion' %}<td><a  href="{% url 'crear_release' proyecto.id %}" class="btn btn-info">Crear Release</a></td>{% endif %}
+                    {% if tipo_accion == 'lista' %}<td><a href="{% url 'listar_releases_proyecto' proyecto.id %}" class="btn btn-info">Listar Releases</a></td>{% endif %}
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div align="center">
+        <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+    </div>
+</div>
+
+{% endblock %}

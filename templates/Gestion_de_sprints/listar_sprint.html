@@ -1,0 +1,82 @@
+{% extends 'Sistema/principal.html' %}
+
+
+
+{% block content %}
+
+<div  style="text-align: center;" class="panel-body jumbotron">
+    <h2>Lista de Sprints del proyecto {{nombre_proyecto}}</h2>
+    <!--{% if error == 'ninguno' %}
+    <div class="alert  alert-success alert-dismissible " role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Usuario creado de forma exitosa.</strong> .
+    </div>
+    {%endif%}-->
+    {% if error == 'activo' %}
+    <div class="alert alert-danger alert-dismissible " role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Error!</strong> Solo puede modificar un sprint en estado PENDIENTE.
+    </div>
+    {%endif%}
+    <div  style=" display:inline;"  >
+        <form method='post'>{% csrf_token %}
+            {{ formulario }}
+            <input type='submit' value='Buscar'>
+        </form>
+    </div>
+
+
+    <div class="panel-body jumbotron">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr class="text-info">
+                    <th  style="text-align: center;">Nombre de Sprint</th>
+                    <th  style="text-align: center;">Numero de Sprint</th>
+                    {% if perms.GestiondeSprints.modificar_sprint  %}<th  style="text-align: center;">Modificar Sprint</th>{% endif %}
+                    {% if perms.GestiondeSprints.consulta_sprint  %}<th  style="text-align: center;">Consulta de Sprint</th>{% endif %}
+                    <th  style="text-align: center;">Sprint Backlog</th>
+                    {% if perms.GestiondeSprints.asignar_us_a_sprint  %}<th  style="text-align: center;">Asignar US a Sprint</th>{% endif %}
+                    {% if perms.GestiondeBurndownChart.modificar_burndown_chart_sprint  %}<th  style="text-align: center;">Actualizar Burndown Chart</th>{% endif %}
+                    {% if perms.GestiondeBurndownChart.consulta_burndown_chart_sprint  %}<th  style="text-align: center;">Visualizar Burndown Chart</th>{% endif %}
+                    <th  style="text-align: center;">Estado de Sprint</th>
+
+                </tr>
+                </thead>
+                <tbody  id="rows">
+                {% for sprint in sprints %}
+                <tr id="{{ user.id }}">
+                    <td  class="datos">{{ sprint.nombre_sprint }}</td>
+                    <td  class="datos">{{ sprint.numero_sprint }}</td>
+                    {% if sprint.estado.upper == 'PENDIENTE' or sprint.estado.upper == 'ACTIVO' %}
+                    {% if perms.GestiondeSprints.modificar_sprint  %}<td><a href="{% url 'modificar_sprint' id_proyecto sprint.id %}" class="btn btn-info">Modificar</a></td>{% endif %}
+                    {% else %}
+                    <td>No modificable</td>
+                    {% endif %}
+                    {% if perms.GestiondeSprints.consulta_sprint  %}<td><a href="{% url 'consultar_sprint' id_proyecto sprint.id %}" class="btn btn-info">Consultar</a></td>{% endif %}
+                    <td><a href="{% url 'sprint_backlog' sprint.id %}" class="btn btn-info">Backlog</a></td></td>
+                    {% if sprint.estado.upper == 'PENDIENTE' %}
+                    {% if perms.GestiondeSprints.asignar_us_a_sprint  %}<td><a href="{% url 'asingarUsASprint' sprint.id %}" class="btn btn-info">Asignar</a></td>{% endif %}
+                    {% elif sprint.estado.upper == 'ACTIVO'  %}
+                    {% if perms.GestiondeSprints.asignar_us_a_sprint  %}<td>Sprint Activo</td>{% endif %}
+                    {% elif sprint.estado.upper == 'CANCELADO' %}
+                    {% if perms.GestiondeSprints.asignar_us_a_sprint  %}<td>Sprint Cancelado</td>{% endif %}
+                    {% elif sprint.estado.upper == 'FINALIZADO' %}
+                    {% if perms.GestiondeSprints.asignar_us_a_sprint  %}<td>Sprint Finalizado</td>{% endif %}
+                    {% endif %}
+                    {% if perms.GestiondeBurndownChart.modificar_burndown_chart_sprint  %}<td><a href="{% url 'actualizarburndownsprint' sprint.id %}" class="btn btn-info">Actualizar</a></td></td>{% endif %}
+                    {% if perms.GestiondeBurndownChart.consulta_burndown_chart_sprint  %}<td><a href="{% url 'burndownchartSprint' sprint.id %}" class="btn btn-info">Visualizar</a></td></td>{% endif %}
+                     <td>{{sprint.estado}}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div align="center">
+        <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+    </div>
+</div>
+
+
+{% endblock %}

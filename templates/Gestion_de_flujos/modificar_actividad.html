@@ -1,0 +1,55 @@
+{% extends 'Sistema/principal.html' %}
+
+{% block content %}
+    {{ formulario.media }}
+    <div style="text-align: center;" class="jumbotron">
+        <h2>Modificacion de Actividad</h2>
+        {% if error == 'fuera_de_orden' %}
+            <div class="alert alert-danger alert-dismissible " role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> Orden Fuera de Rango.
+            </div>
+        {%endif%}
+        {% if error == 'vacio' %}
+            <div class="alert alert-danger alert-dismissible " role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> Complete todos los datos antes de guardar.
+            </div>
+        {%endif%}
+        {% if error == 'tipo_de_dato' %}
+            <div class="alert alert-danger alert-dismissible " role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> El campo 'Orden' debe ser numerico.
+            </div>
+        {%endif%}
+        <form id="formulario" method="post" action="">{% csrf_token %}
+            <table class="table table-hover">
+                <thead>
+                <tr class="text-info">
+                    <th style="text-align: center;">Informacion</th>
+                </tr>
+                </thead>
+                <tbody id="rows" >
+                <tr  >
+                    <td><label>Nombre de la Actividad</label></td>
+                    <td><input id="nombre_actividad" type="text" name="nombre_actividad"  value="{{actividad.nombre_actividad}}"></td>
+                </tr>
+                <tr>
+                    <td ><label>Estado de la Actividad</label> </td>
+                    <td>{{ formulario.estado_actividad }}</td>
+                </tr>
+                <tr  >
+                    <td><label>Orden de la Actividad</label></td>
+                    <td><input id="orden_actividad" type="text" name="orden_actividad"  value="{{actividad.orden_actividad}}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div align="center">
+
+                <input type="submit" class="btn btn-info" name="Guardar" value="Guardar">
+                <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Cancelar">
+            </div>
+        </form>
+    </div>
+{% endblock %}

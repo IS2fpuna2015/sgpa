@@ -1,0 +1,235 @@
+{% extends 'base.html' %}
+
+{% block header%}
+      {% load static %}
+
+
+
+<nav class="navbar navbar-default  ">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+
+
+            <div class="navbar-brand">
+                {{ user.username }}
+            </div>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown ">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        Sesion
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        {% if perms.GestiondeSistema.consultar_auditoria %}<li><a href="{% url 'auditoria' %}">Realizar auditoria</a></li> {% endif %}
+                        <li class="divider"></li>
+                        <li><a href="{% url 'listar_mensajes' %}" style="text-align:center;"> Notificaciones <span  <span class="badge">{{usuario.notificaciones}}</span> </a></li>
+                        <li class="divider"></li>
+                        <li><a href="{% url 'logout' %}"><p align="center">Cerrar sesion</p></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>  	<div class="container-fluid main-container">
+    <div class="col-md-2 sidebar">
+        <div class="row">
+            <!-- uncomment code for absolute positioning tweek see top comment in css -->
+
+            <!-- Menu -->
+            <div class="side-menu">
+                <nav class="navbar navbar-default" role="navigation">
+                    <!-- Main Menu -->
+                    <div class="side-menu-container">
+                        <ul class="nav navbar-nav">
+                            <li  ><a href="{% url 'home' %}"><span class="glyphicon "></span> SGPA</a></li>
+
+
+                            {% if perms.GestiondeProyectos.gestion_proyecto %}
+                            <li class="panel panel-default" id="dropdown">
+                                <a data-toggle="collapse" href="#dropdown-lvl1">
+                                    <span class="glyphicon glyphicon-user"></span> Gestion de Proyecto <span class="caret"></span>
+                                </a>
+
+                                <div id="dropdown-lvl1" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="nav navbar-nav">
+                                            {% if perms.GestiondeProyectos.crear_proyecto %}<li><a href="{% url 'crear_proyecto' %}">Crear Proyecto</a></li> {% endif %}
+                                            {% if perms.GestiondeProyectos.listar_proyecto %}<li><a href="{% url 'listar_proyecto' %}">Listar proyecto</a></li> {% endif %}
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+
+                            {% if perms.GestiondeMensajeria.gestion_de_mensajeria %}
+                            <li class="panel panel-default" id="dropdown">
+                                <a data-toggle="collapse" href="#dropdown-lvl8">
+                                    <span class="glyphicon glyphicon-user"></span> Gestion de Mensajes <span class="caret"></span>
+                                </a>
+
+                                <div id="dropdown-lvl8" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="nav navbar-nav">
+                                            {% if perms.GestiondeMensajeria.crear_mensaje %}<li><a href="{% url 'enviar_mensaje' %}">Enviar Mensaje</a></li> {% endif %}
+                                            {% if perms.GestiondeMensajeria.listar_mensajes %}<li><a href="{% url 'listar_mensajes' %}">Listar Mensajes</a></li> {% endif %}
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+
+
+                            {% if perms.GestiondeReleases.gestion_de_release %}
+                            <li class="panel panel-default" id="dropdown">
+                              <a data-toggle="collapse" href="#dropdown-lvl9">
+                                <span class="glyphicon glyphicon-user"></span> Gestion de Releases
+                                <span class="caret"></span>
+                              </a>
+
+                              <div id="dropdown-lvl9" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                  <ul class="nav navbar-nav">
+                                    {% if perms.GestiondeReleases.crear_release %}
+                                    <li><a href="{% url 'listar_proyecto_release' %}?a=creacion">Crear
+                                      Release</a></li>{% endif %}
+                                      {% if perms.GestiondeReleases.crear_release %}
+                                    <li><a href="{% url 'listar_proyecto_release' %}?a=lista">Listar
+                                        Releases</a></li>{% endif %}
+                                  </ul>
+                                </div>
+                              </div>
+                            </li>
+                            {% endif %}
+
+
+
+                            {% if perms.GestiondeTableroKanban.gestion_tablero_kanban  %}
+                            <li class="panel panel-default" id="dropdown">
+                                <a data-toggle="collapse" href="#dropdown-lvl2">
+                                    <span class="glyphicon glyphicon-user"></span> Gestion de tablero kanban <span class="caret"></span>
+                                </a>
+
+                                <div id="dropdown-lvl2" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="nav navbar-nav">
+                                            {% if perms.GestiondeTableroKanban.crear_tablero_kanban  %}<li><a href="{% url 'listar_proyecto_kanban' %}">Crear tablero kanban</a></li>{% endif %}
+                                            {% if perms.GestiondeTableroKanban.listar_tablero_kanban  %}<li><a href="{% url 'listar_tablero_kanban' %}">Listar tableros kanban</a></li>{% endif %}
+
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+
+                            {% if perms.GestiondeFlujos.gestion_flujo  %}
+                            <li class="panel panel-default" id="dropdown">
+                                <a data-toggle="collapse" href="#dropdown-lvl7">
+                                    <span class="glyphicon glyphicon-user"></span> Gestion de Flujo <span class="caret"></span>
+                                </a>
+
+                                <div id="dropdown-lvl7" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="nav navbar-nav">
+                                            {% if perms.GestiondeFlujos.crear_flujo  %}<li><a href="{% url 'listar_proyecto_flujo' %}">Crear Flujo</a></li>{% endif %}
+                                            {% if perms.GestiondeFlujos.listar_flujo  %}<li><a href="{% url 'listar_todos_flujos' %}">Listar Flujo</a></li>{% endif %}
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+
+
+                            {% if perms.GestiondeSprints.gestion_sprint  %}
+                            <li class="panel panel-default" id="dropdown">
+                                <a data-toggle="collapse" href="#dropdown-lvl3">
+                                    <span class="glyphicon glyphicon-user"></span> Gestion de Sprint <span class="caret"></span>
+                                </a>
+
+                                <div id="dropdown-lvl3" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="nav navbar-nav">
+                                            {% if perms.GestiondeSprints.crear_sprint  %}<li><a href="{% url 'listar_proyecto_sprint' %}">Crear Sprint</a></li>{% endif %}
+                                            {% if perms.GestiondeSprints.listar_sprint  %}<li><a href="{% url 'listar_todos_sprint' %}">Listar Sprint</a></li>{% endif %}
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+
+
+                            {% if perms.GestiondeUserStories.gestion_userstories  %}
+                            <li class="panel panel-default" id="dropdown">
+                                <a data-toggle="collapse" href="#dropdown-lvl4">
+                                    <span class="glyphicon glyphicon-user"></span> Gestion de User Story <span class="caret"></span>
+                                </a>
+
+                                <div id="dropdown-lvl4" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="nav navbar-nav">
+                                        {% if perms.GestiondeUserStories.crear_userstories  %}<li><a href="{% url 'listar_proyecto_us' %}" >Crear User Story</a></li>{% endif %}
+                                        {% if perms.GestiondeUserStories.listar_userstories  %}<li><a href="{% url 'listar_todos_us' %}" >Listar User Story</a></li>{% endif %}
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+
+                            {% if perms.GestiondeUsuarios.gestion_usuario  %}
+                            <li class="panel panel-default" id="dropdown">
+                                <a data-toggle="collapse" href="#dropdown-lvl5">
+                                    <span class="glyphicon glyphicon-user"></span> Gestion de Usuarios <span class="caret"></span>
+                                </a>
+
+                                <div id="dropdown-lvl5" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="nav navbar-nav">
+                                            {% if perms.GestiondeUsuarios.crear_usuario  %}<li><a href="{% url 'crearusuario' %}">Crear usuario</a></li>{% endif %}
+                                            {% if perms.GestiondeUsuarios.listar_usuario  %}<li><a href="{% url 'listar_usuarios' %}">Listar usuario</a></li>{% endif %}
+
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+
+                            {% if perms.GestiondeRolesyPermisos.gestion_rol  %}
+                            <li class="panel panel-default" id="dropdown">
+                                <a data-toggle="collapse" href="#dropdown-lvl6">
+                                    <span class="glyphicon glyphicon-user"></span> Roles y Permisos <span class="caret"></span>
+                                </a>
+
+                                <div id="dropdown-lvl6" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="nav navbar-nav">
+                                            {% if perms.GestiondeRolesyPermisos.crear_rol  %}<li><a href=" {% url 'crearrol' %}">Crear rol</a></li>{% endif %}
+                                            {% if perms.GestiondeRolesyPermisos.listar_rol  %}<li><a href="{% url 'listar_roles' %}">Listar roles</a></li>{% endif %}
+                                            {% if perms.GestiondeRolesyPermisos.listar_permiso  %}<li><a href="{% url 'listar_permisos' %}">Listar permisos</a></li>{% endif %}
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+
+
+                            <li class="panel panel-default" id="dropdown">
+                                <a data-toggle="collapse" href="#dropdown-lvl10">
+                                    <span class="glyphicon glyphicon-user"></span> Gestion de Reportes <span class="caret"></span>
+                                </a>
+
+                                <div id="dropdown-lvl10" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="nav navbar-nav">
+                                            <li><a href="{% url 'reporte_wip' %}">Generar Reporte</a></li>
+                                            <!--{% if perms.GestiondeProyectos.listar_proyecto %}<li><a href="{% url 'listar_proyecto' %}">Listar proyecto</a></li> {% endif %}-->
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </nav>
+
+            </div>
+        </div>  		</div>
+    <div class="col-md-10 content">
+        <div class="panel panel-default">
+            {% endblock %}
+
+

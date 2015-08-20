@@ -1,0 +1,55 @@
+{% extends 'Sistema/principal.html' %}
+
+
+
+{% block content %}
+
+{% if perms.GestiondeTableroKanban.listar_tablero_kanban  %}
+<div  style="text-align: center;" class="panel-body jumbotron">
+    <div>
+        <h2>Lista de tableros kanban</h2><br>
+    </div>
+
+    <div class="panel-body jumbotron">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr class="text-info">
+                    <th  style="text-align: center;">Nombre del tablero kanban</th>
+                    <th  style="text-align: center;">Nombre de Proyecto</th>
+                     <th  style="text-align: center;">Modificar tablero kanban</th>
+                    <th  style="text-align: center;">Consultar tablero  kanban</th>
+                    <th  style="text-align: center;">Visualizar tablero  kanban</th>
+                </tr>
+                </thead>
+                <tbody  id="rows">
+                {% for tablero in tableros %}
+                <tr>
+                    <td>{{ tablero.nombre_tablero }}</td>
+                    <td>{{ tablero.nombre_proyecto }}</td>
+                    {% if tablero.estado_tablero == 'abierto' %}
+                    <td><a href="{% url 'modificar_tablero_kanban' tablero.id %}" class="btn btn-info">Modificar tablero kanban</a></td>
+                    {% endif %}
+                    {% if tablero.estado_tablero == 'cerrado' %}
+                    <td>No modificable</td>
+                    {% endif %}
+                    <td><a href="{% url 'consultar_tablero_kanban' tablero.id %}" class="btn btn-info">Consultar tablero kanban</a></td>
+                    <td><a href="{% url 'visualizar_tablero_kanban' tablero.id %}" class="btn btn-info">Visualizar</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endif  %}
+{%  if perms.GestiondeTableroKanban.listar_tablero_kanban == False %}
+<div  style="text-align: center;" class="jumbotron">
+    <h2>No posee permisos para acceder a esta seccion</h2>
+    <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+</div>
+{% endif  %}
+
+{% endblock %}

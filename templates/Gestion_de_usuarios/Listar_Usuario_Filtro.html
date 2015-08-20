@@ -1,0 +1,51 @@
+{% extends 'Sistema/principal.html' %}
+
+
+
+{% block content %}
+
+
+<div  style="text-align: center;" class="panel-body jumbotron">
+    <div  style=" display:inline;"  >
+        <form method='post'>{% csrf_token %}
+
+            {{ form }}
+            <input type='submit' value='Buscar'>
+
+        </form>
+    </div>
+    {% if usuario != 'NULL' %}
+    <div class="panel-body jumbotron">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr class="text-info">
+                    <th  style="text-align: center;">Nombre de usuario</th>
+                    {% if perms.GestiondeUsuarios.modificar_usuario  %}<th  style="text-align: center;">Estado de usuario</th>{% endif %}
+                    {% if perms.GestiondeUsuarios.consulta_usuario  %}<th  style="text-align: center;">Modificacion de usuario</th>{% endif %}
+                    {% if perms.GestiondeUsuarios.eliminar_usuario  %}<th  style="text-align: center;">Eliminacion de usuario</th>{% endif %}
+                </tr>
+                </thead>
+                <tbody  id="rows">
+                {% for usuario_ciclo in usuarios %}
+                {% if usuario_ciclo.username != 'admin' %}
+                <tr id="{{ user.id }}">
+                    <td  class="datos">{{ usuario_ciclo.username }}</td>
+                    {% if perms.GestiondeUsuarios.modificar_usuario  %}<td><a href="{% url 'modificarusuario' usuario_ciclo.id %}" class="btn btn-info">Modificar</a></td>{% endif %}
+                    {% if perms.GestiondeUsuarios.consulta_usuario  %}<td><a href="{% url 'consultar_usuario' usuario_ciclo.id %}" class="btn btn-info">Consultar</a></td>{% endif %}
+                    {% if perms.GestiondeUsuarios.eliminar_usuario  %}<td><a href="{% url 'eliminar_usuario' usuario_ciclo.id %}" class="btn btn-info">Eliminar</a></td>{% endif %}
+                </tr>
+                {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div align="center">
+            <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'Sistema/principal.html' %}
+
+{% block content %}
+
+    <div style="text-align: center;" class="jumbotron">
+        <h2>Enviar Mensaje</h2>
+        <br>
+        {% if error == 'destinatario' %}
+            <div class="alert alert-danger alert-dismissible " role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> Se debe indicar un Destinatario al mensaje!
+            </div>
+        {% endif %}
+        {% if error == 'asunto' %}
+            <div class="alert alert-danger alert-dismissible " role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> Se debe indicar un Asunto al mensaje!
+            </div>
+        {% endif %}
+        {% if error == 'mensaje' %}
+            <div class="alert alert-danger alert-dismissible " role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> El mensaje no puede ser vacio!
+            </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="col-md-3"></div>
+            <form id="formulario" method="post" action="">{% csrf_token %}
+                <div id="mensaje" align="center" class="table-responsive container col-md-6">
+                    <table class="table table-hover" align="center">
+                        <tr>
+                            <td><label>Destinatario:</label></td>
+                            <td>{{ formulario.destinatario }}</td>
+                        </tr>
+                        <tr>
+                            <td><label>Asunto:</label></td>
+                            <td>{{ formulario.asunto }}</td>
+                        </tr>
+                        <tr>
+                            <td><label>Mensaje:</label></td>
+                            <td>{{ formulario.mensaje }}</td>
+                        </tr>
+                    </table>
+                    <div>
+                        <input type="submit" class="btn btn-info" name="Enviar" value="Enviar">
+                        <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+                    </div>
+                </div>
+            </form>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+{% endblock %}

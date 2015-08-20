@@ -1,0 +1,55 @@
+{% extends 'Sistema/principal.html' %}
+
+
+
+{% block content %}
+
+
+    <div style="text-align: center;" class="panel-body jumbotron">
+         <h2>Lista de User Stories</h2>
+        <div class="panel-body jumbotron">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr class="text-info">
+                        <th class="text-center">Nombre de US</th>
+                        {% if perms.GestiondeUserStories.modificar_userstories %}
+                            <th class="text-center">Modificar User Story</th>{% endif %}
+                        {% if perms.GestiondeUserStories.consulta_userstories %}
+                            <th class="text-center">Consulta de user Story</th>{% endif %}
+                        <th class="text-center">Comentarios</th>
+                        <th class="text-center">Prioridad</th>
+                        <th class="text-center">Estado</th>
+                        <th class="text-center">Proyecto</th>
+                    </tr>
+                    </thead>
+                    <tbody id="rows">
+                    {% for item in list %}
+
+                        <tr id="{{ user.id }}">
+                            <td class="datos">{{ item.0.nombre }}</td>
+                            {% if perms.GestiondeUserStories.modificar_userstories and item.0.estado.upper != 'APROBADO' %}
+                                <td><a href="{% url 'modificar_userstory' item.0.id %}" class="btn btn-info">Modificar</a></td>
+                            {% else %}
+                                <td>NO MODIFICABLE</td>
+                            {% endif %}
+                            {% if perms.GestiondeUserStories.consulta_userstories %}
+                                <td><a href="{% url 'consultar_userstory' item.0.id %}"
+                                       class="btn btn-info ">Consultar</a></td>{% endif %}
+                            <td><a href="{% url 'comentario_userstory'  item.0.id  %}" class="btn btn-info ">Ver comentarios</a></td>
+                            <th class="text-center">{{ item.0.prioridad }}</th>
+                            <th class="text-center">{{ item.0.estado }}</th>
+                            <th class="text-center">{{ item.1.nombre_proyecto }}</th>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div align="center">
+            <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+        </div>
+    </div>
+
+
+{% endblock %}

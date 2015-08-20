@@ -1,0 +1,78 @@
+{% extends 'Sistema/principal.html' %}
+
+
+
+{% block content %}
+<style type="text/css" media="screen">
+    select { width: 100%; margin-right: 20px; }
+</style>
+
+
+
+<div  style="text-align: center;" class="jumbotron">
+    <h2>Generacion de tablero kanban para el proyecto {{proyecto.nombre_proyecto}}</h2>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+
+            <form action="" method="post" style="text-align:left; ">{% csrf_token %}
+                <div  class="panel-body jumbotron"  align="center" >
+                    <div align="center" class="table-responsive container">
+
+                        <table class="table table-hover">
+                            <thead>
+                            <tr class="text-info">
+                            </tr>
+                            </thead>
+                            <tbody id="rows" >
+                            <tr  >
+                                <td><label>Nombre del tablero</label></td>
+                                <td><label>{{tablero.nombre_tablero}}</label></td>
+                            </tr>
+                            <tr>
+                                <td ><label>Sprint</label> </td>
+                                 <td>
+                                    <select name="sprint" id="mySelect_sprint">
+
+                                        <option  name="{{sprint.id}}" value="{{sprint.id}}">{{sprints.nombre_sprint}}</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td ><label>Flujo</label> </td>
+                                <td>
+                                    <select name="flujo" id="mySelect_flujo" >
+
+                                        <option name="{{flujo.id}}" value="{{flujo.id}}">{{flujos.nombre_flujo}}</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td ><label>Estado del tablero</label> </td>
+                                <td>
+                                    <select name="estado" id="mySelect_estado_tablero">
+                                        <option value="{{tablero.estado_tablero}}">{{tablero.estado_tablero}}</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-2"></div>
+</div>
+<div align="center">
+    <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+</div>
+
+</form>
+
+{% endblock %}

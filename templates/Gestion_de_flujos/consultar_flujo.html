@@ -1,0 +1,38 @@
+{% extends 'Sistema/principal.html' %}
+
+{% block content %}
+{{ formulario.media }}
+<div style="text-align: center;" class="jumbotron">
+    <h2>Consulta de Flujo</h2>
+
+    <form id="formulario" method="post" action="">{% csrf_token %}
+
+        <table class="table table-hover">
+            <thead>
+            <tr class="text-info"><th align="center"></th>
+            </tr>
+            </thead>
+            <tbody id="rows" >
+            <tr  >
+                <td><label>Nombre del flujo</label></td>
+                <td><label>{{ flujo_seleccionado.nombre_flujo }}</label></td>
+            </tr>
+            <tr  >
+                <td><label>Proyecto al que pertenece</label></td>
+                <td><label>{{ proyecto.nombre_proyecto }}</label></td>
+            </tr>
+            <tr  >
+                <td><label>Actividades asignadas</label></td>
+                <td>
+                    {% for item in actividades%}
+                    <label>{{ item.nombre_actividad }}</label><br>
+                    {% endfor %}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+    <!--<a class="btn btn-info" href="{% url 'listar_flujo' proyecto.id %}" class="btn btn-info">Volver</a>-->
+    <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+</div>
+{% endblock %}

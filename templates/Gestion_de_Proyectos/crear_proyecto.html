@@ -1,0 +1,158 @@
+{% extends 'Sistema/principal.html' %}
+
+{% block content %}
+
+<div style="text-align: center;" class="jumbotron">
+    <h2>Creacion de Proyectos</h2>
+        {% if error == 'nombre' %}
+    <div class="alert alert-danger alert-dismissible " role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <strong>Error!</strong> Ya existe un proyecto con el mismo nombre, seleccione otro
+    </div>
+    {% endif %}
+    {% if error == 'codigo' %}
+    <div class="alert alert-danger alert-dismissible " role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <strong>Error!</strong> El condigo de proyecto ya Existe!
+    </div>
+    {% endif %}
+
+    {% if error == 'cliente' %}
+    <div class="alert alert-danger alert-dismissible " role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <strong>Error!</strong> Debe seleccionar un cliente.
+    </div>
+    {% endif %}
+
+    {% if error == 'equipo_desarrollo' %}
+    <div class="alert alert-danger alert-dismissible " role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <strong>Error!</strong> Debe seleccionar un equipo de desarrollo.
+    </div>
+    {% endif %}
+
+    {% if error == 'scrum_master' %}
+    <div class="alert alert-danger alert-dismissible " role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <strong>Error!</strong> Debe seleccionar un Scrum Master.
+    </div>
+    {% endif %}
+
+    {% if error == 'otro' %}
+    <div class="alert alert-danger alert-dismissible " role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <strong>Error!</strong> Debe completar todos los campos.
+    </div>
+    {% endif %}
+
+    {% if error == 'fechas' %}
+    <div class="alert alert-danger alert-dismissible " role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <strong>Error!</strong> Error al seleccionar las Fechas de Inicio y Fin de Proyecto.
+    </div>
+    {% endif %}
+
+
+    <div class="panel-body jumbotron" align="center">
+
+        <form id="formularioproyecto" method="post" action="">{% csrf_token %}
+            <div class="row">
+                <div class="col-md-5">
+
+                    <div id="datosproyecto" align="center" class=" container">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr class="text-info">
+                                <th style="text-align: center;">Datos Proyecto</th>
+                            </tr>
+                            </thead>
+                            <tbody id="rowsdatosproyecto">
+                            <tr>
+                                <td><label>Nombre de Proyecto</label></td>
+                                <td>{{ formulario.nombre_proyecto }}</td>
+                            </tr>
+                            <tr>
+                                <td><label>Codigo de Proyecto</label></td>
+                                <td>{{ formulario.codigo_proyecto }}</td>
+                            </tr>
+                            <tr>
+                                <td><label>Descripcion del Proyecto</label></td>
+                                <td>{{ formulario.descripcion_proyecto }}</td>
+                            </tr>
+                            <tr>
+                                <td><label>Fecha de Inicio</label></td>
+                                <td>{{ formulario.fecha_inicio }}</td>
+                            </tr>
+                            <tr>
+                                <td><label>Fecha de Finalizacion</label></td>
+                                <td>{{ formulario.fecha_finalizacion }}</td>
+                            </tr>
+                            <tr>
+                                <td><label>Cliente</label></td>
+                                <td><div  style=" border: 1px solid #000000; OVERFLOW-Y:scroll; WIDTH:250px; text-align: left; HEIGHT:60px; background-color:#ffffff">{{ formulario.cliente }}</div></td>
+                            </tr>
+                            <tr>
+                                <td><label>Estado del Proyecto</label></td>
+                                <td>{{ formulario.estado_proyecto }}</td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+
+                </div>
+
+                <div class="col-md-7">
+                    <div id="participanteflujosproyecto" align="center" class=" container">
+                        <table id="scrummaster" class="table">
+                            <thead>
+                            <tr class="text-info">
+                                <th style="text-align: center;">Scrum Master</th>
+                            </tr>
+                            </thead>
+                            <tbody id="rowsdatosproyecto" align="center">
+                            <tr>
+                                <td><div id="scrollescrummaster"  style=" border: 1px solid #000000; OVERFLOW-Y:scroll; WIDTH:250px; text-align: left; HEIGHT:120px; background-color:#ffffff">{{ formulario.scrum_master }}</div></td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <table id="equipodesarrollo" class="table">
+                            <thead>
+                            <tr class="text-info">
+                                <th style="text-align: center;">Equipo de Trabajo</th>
+                            </tr>
+                            </thead>
+                            <tbody id="rowsdatosproyecto"  align="center">
+
+                            <tr>
+                                <td>
+                                    <div id="scrollequipodesarrollo"  style=" border: 1px solid #000000; OVERFLOW-Y:scroll; WIDTH:250px; text-align: left; HEIGHT:120px; background-color:#ffffff">{{ formulario.equipo_desarrollo }}</div>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <div align="center">
+                <input type="submit" class="btn btn-info" name="Guardar" value="Guardar">
+                <!--<a class=" btn btn-info" href="{% url 'home' %}">Cancelar</a>-->
+                <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Cancelar">
+            </div>
+
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,136 @@
+{% extends 'Sistema/principal.html' %}
+
+
+
+{% block content %}
+
+{% if perms.GestiondeTableroKanban.consulta_tablero_kanban  %}
+
+<div  style="text-align: center;" class="panel-body jumbotron">
+    <div>
+        <h2>Tablero kanban  {{tablero.nombre_tablero}}</h2><br>
+    </div>
+
+    <div >
+        <h4 class="text-info">Flujo : {{flujo.nombre_flujo}}</h4>
+    </div>
+
+    <div style=" border: 1px solid #000000; OVERFLOW-Y:scroll;OVERFLOW-X:scroll; WIDTH:100%; text-align: left; HEIGHT:460px;"  >
+        <div class="panel-body jumbotron">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered"      >
+                    <thead>
+                    <tr class="text-info">
+                        {% for actividad_exterior in actividades %}
+                        <th  style="text-align: center;height:40px">
+                            {{actividad_exterior.nombre_actividad}}<br>
+                        </th>
+                        {% endfor %}
+                    </tr>
+                    </thead>
+                    <tbody  id="rows">
+                    <!-- Inicio de la tabla interior-->
+                    <tr>
+                        {% for actividad in actividades %}
+                        <td>
+                            <table class="table table-hover table-bordered table-condensed table-striped"   >
+                                <thead>
+                                <tr class="text-info">
+                                    <th  style="text-align: center;height:40px">ToDo</th>
+                                    <th  style="text-align: center;height:40px">Doing</th>
+                                    <th  style="text-align: center;height:40px">Done</th>
+                                </tr>
+                                </thead>
+                                <tbody  id="rows">
+                                {% for us in uss %}
+                                <tr style="height:60px;">
+                                    <td height="20px">
+                                        {% if us.id_actividad == actividad.id and us.estado_en_actividad == 'ToDo' %}
+                                        <div align="center" >
+                                            {% if us.prioridad == 'ALTA' %}
+                                                {% if tablero.estado_tablero.upper == 'ABIERTO' %}
+                                                    <a href="{% url 'cambio_estado_actividad' tablero.id us.id %}" style="border: 2px solid #b94a48;max-width:100px;height:30px;width:70%;margin-top:10px" class="btn btn-info">{{us.nombre}}</a>
+                                                {% else %}
+                                                    <a href="#" style="border: 2px solid #b94a48;max-width:120px;height:30px;width:70%;margin-top:10px" class="btn btn-info">{{us.nombre}}</a>
+                                                {% endif %}
+                                            {% else %}
+                                                {% if tablero.estado_tablero.upper == 'ABIERTO' %}
+                                                    <a href="{% url 'cambio_estado_actividad' tablero.id us.id %}" style="border: 2px solid #b94a48;max-width:100px;height:30px;width:70%;margin-top:10px" class="btn btn-info">{{us.nombre}}</a>
+                                                {% else %}
+                                                    <a href="#" style="border: 2px solid #b94a48;max-width:100px;height:30px;width:70%;margin-top:10px" class="btn btn-info">{{us.nombre}}</a>
+                                                {% endif %}
+                                            {% endif %}
+                                        </div>
+                                        {%endif%}
+                                    </td>
+                                    <td height="20px">
+                                        {% if us.id_actividad == actividad.id and us.estado_en_actividad == 'Doing' %}
+                                        <div align="center" >
+                                            {% if us.prioridad == 'ALTA' %}
+                                                {% if tablero.estado_tablero.upper == 'ABIERTO' %}
+                                                    <a href="{% url 'cambio_estado_actividad' tablero.id us.id %}" style="border: 2px solid #b94a48;max-width:100px;height:30px;width:70%;margin-top:10px" class="btn btn-info">{{us.nombre}}</a>
+                                                {% else %}
+                                                    <a href="#" style="border: 2px solid #b94a48;max-width:120px;height:30px;width:70%;margin-top:10px" class="btn btn-info">{{us.nombre}}</a>
+                                                {% endif %}
+                                            {% else %}
+                                                {% if tablero.estado_tablero.upper == 'ABIERTO' %}
+                                                    <a href="{% url 'cambio_estado_actividad' tablero.id us.id %}" style="border: 2px solid #b94a48;max-width:100px;height:30px;width:70%;margin-top:10px" class="btn btn-info">{{us.nombre}}</a>
+                                                {% else %}
+                                                    <a href="#" style="border: 2px solid #b94a48;max-width:120px;height:30px;width:70%;margin-top:10px" class="btn btn-info">{{us.nombre}}</a>
+                                                {% endif %}
+                                            {% endif %}
+                                        </div>
+                                        {%endif%}
+                                    </td>
+                                    <td height="20px">
+                                        {% if us.id_actividad == actividad.id and us.estado_en_actividad == 'Done' %}
+                                        <div align="center" >
+                                            {% if us.prioridad == 'ALTA' %}
+                                                {% if tablero.estado_tablero.upper == 'ABIERTO' %}
+                                                    <a href="{% url 'cambio_estado_actividad' tablero.id us.id %}" style="border: 2px solid #b94a48;max-width:100px;height:30px;width:70%;margin-top:10px" class="btn btn-info">{{us.nombre}}</a>
+                                                {% else %}
+                                                    <a href="#" style="border: 2px solid #b94a48;max-width:120px;height:30px;width:70%;margin-top:10px" class="btn btn-info">{{us.nombre}}</a>
+                                                {% endif %}
+                                            {% else %}
+                                                {% if tablero.estado_tablero.upper == 'ABIERTO' %}
+                                                    <a href="{% url 'cambio_estado_actividad' tablero.id us.id %}" style="border: 2px solid #b94a48;max-width:100px;height:30px;width:70%;margin-top:10px" class="btn btn-info">{{us.nombre}}</a>
+                                                {% else %}
+                                                    <a href="#" style="border: 2px solid #b94a48;max-width:120px;height:30px;width:70%;margin-top:10px" class="btn btn-info">{{us.nombre}}</a>
+                                                {% endif %}
+                                            {% endif %}
+                                        </div>
+                                        {%endif%}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </td>
+
+                        {% endfor %}
+
+                    </tr>
+
+                    <!-- Fin de la tabla mas externa -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div>
+        <a  style="width:100px;" href="{% url 'listar_tablero_kanban_proyecto' tablero.id_proyecto.id %}" class="btn btn-info">Volver</a>
+    </div>
+</div>
+
+
+{% endif  %}
+{%  if perms.GestiondeTableroKanban.consulta_tablero_kanban == False %}
+<div  style="text-align: center;" class="jumbotron">
+    <h2>No posee permisos para acceder a esta seccion</h2>
+    <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+</div>
+{% endif  %}
+
+
+{%endblock%}

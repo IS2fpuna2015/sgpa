@@ -1,0 +1,52 @@
+{% extends 'Sistema/principal.html' %}
+
+
+
+{% block content %}
+
+{% if perms.GestiondeTableroKanban.listar_proyectos_con_tableros_kanban  %}
+<div  style="text-align: center;" class="panel-body jumbotron">
+    <div>
+        <h2>Tableros kanban del proyecto {{proyecto.nombre_proyecto}}</h2><br>
+    </div>
+    <div class="panel-body jumbotron">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr class="text-info">
+                    <th  style="text-align: center;">Nombre del tablero</th>
+                     <th  style="text-align: center;">Modificar datos del tablero kanban</th>
+                    <th  style="text-align: center;">Consultar datos del tablero kanban</th>
+                    <th  style="text-align: center;">Visualizar tablero  kanban</th>
+                </tr>
+                </thead>
+                <tbody  id="rows">
+                {% for tablero in tableros %}
+                <tr>
+                    <td>{{ tablero.nombre_tablero }}</td>
+                    <td>
+                        {% if tablero.estado_tablero == 'abierto' %}
+                        <a href="{% url 'modificar_tablero_kanban' tablero.id %}"  class="btn btn-info">Modificar</a>
+                        {% else %}
+                        Tablero No modificable
+                        {% endif %}
+                    </td>
+                    <td><a href="{% url 'consultar_tablero_kanban' tablero.id %}"  class="btn btn-info">Consultar</a></td>
+                    <td><a href="{% url 'visualizar_tablero_kanban' tablero.id %}" class="btn btn-info">Visualizar</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endif  %}
+{%  if perms.GestiondeTableroKanban.crear_tablero_kanban == False %}
+<div  style="text-align: center;" class="jumbotron">
+    <h2>No posee permisos para acceder a esta seccion</h2>
+    <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+</div>
+{% endif  %}
+
+
+{% endblock %}

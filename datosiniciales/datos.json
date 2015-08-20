@@ -1,0 +1,2637 @@
+[
+{
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry",
+    "name": "log entry"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 1
+},
+{
+  "fields": {
+    "app_label": "auth",
+    "model": "permission",
+    "name": "permission"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 2
+},
+{
+  "fields": {
+    "app_label": "auth",
+    "model": "group",
+    "name": "group"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 3
+},
+{
+  "fields": {
+    "app_label": "auth",
+    "model": "user",
+    "name": "user"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 4
+},
+{
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype",
+    "name": "content type"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 5
+},
+{
+  "fields": {
+    "app_label": "sessions",
+    "model": "session",
+    "name": "session"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 6
+},
+{
+  "fields": {
+    "app_label": "sites",
+    "model": "site",
+    "name": "site"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 7
+},
+{
+  "fields": {
+    "app_label": "GestiondeUsuarios",
+    "model": "usuario",
+    "name": "usuario"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 8
+},
+{
+  "fields": {
+    "app_label": "GestiondeRolesyPermisos",
+    "model": "rol",
+    "name": "rol"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 9
+},
+{
+  "fields": {
+    "app_label": "GestiondeFlujos",
+    "model": "flujo",
+    "name": "flujo"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 10
+},
+{
+  "fields": {
+    "app_label": "GestiondeFlujos",
+    "model": "actividad",
+    "name": "actividad"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 11
+},
+{
+  "fields": {
+    "app_label": "GestiondeProyectos",
+    "model": "proyecto",
+    "name": "proyecto"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 12
+},
+{
+  "fields": {
+    "app_label": "GestiondeSistema",
+    "model": "sistema",
+    "name": "sistema"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 13
+},
+{
+  "fields": {
+    "app_label": "GestiondeUserStories",
+    "model": "userstory",
+    "name": "user story"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 14
+},
+{
+  "fields": {
+    "app_label": "GestiondeUserStories",
+    "model": "comentario",
+    "name": "comentario"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 15
+},
+{
+  "fields": {
+    "app_label": "GestiondeUserStories",
+    "model": "fileattached_model",
+    "name": "file attached_model"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 16
+},
+{
+  "fields": {
+    "app_label": "GestiondeUserStories",
+    "model": "file",
+    "name": "file"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 17
+},
+{
+  "fields": {
+    "app_label": "GestiondeSprints",
+    "model": "sprint",
+    "name": "sprint"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 18
+},
+{
+  "fields": {
+    "app_label": "GestiondeSprints",
+    "model": "sprint_detalle",
+    "name": "sprint_ detalle"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 19
+},
+{
+  "fields": {
+    "app_label": "GestiondeTableroKanban",
+    "model": "tablerokanban",
+    "name": "tablero kanban"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 20
+},
+{
+  "fields": {
+    "app_label": "GestiondeMensajeria",
+    "model": "mensaje",
+    "name": "mensaje"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 21
+},
+{
+  "fields": {
+    "app_label": "GestiondeBurndownChart",
+    "model": "burndownchartsprint",
+    "name": "burndown chart sprint"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 22
+},
+{
+  "fields": {
+    "app_label": "GestiondeBurndownChart",
+    "model": "burndownchartproyecto",
+    "name": "burndown chart proyecto"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 23
+},
+{
+  "fields": {
+    "app_label": "GestiondeReleases",
+    "model": "release",
+    "name": "release"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 24
+},
+{
+  "fields": {
+    "expire_date": "2015-07-04T04:41:03.993Z",
+    "session_data": "MDUyZTM2NDRkZWViNzNlZWNlNGFlZGUyNzVkNGU1NWY2YmYzZjkwNzp7Il9hdXRoX3VzZXJfaGFzaCI6IjcwNTc3N2YxMDVlM2U3MmI1ZGE3ODBmNDExZjVlYTVlNWRjZWFkZWIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjN9"
+  },
+  "model": "sessions.session",
+  "pk": "qfcaf9s3c8ulbsz5c8f49itgvjymaj4a"
+},
+{
+  "fields": {
+    "domain": "example.com",
+    "name": "example.com"
+  },
+  "model": "sites.site",
+  "pk": 1
+},
+{
+  "fields": {
+    "id_sprint": 0,
+    "nombre_flujo": "Flujo 1 - Proyecto 1",
+    "id_Proyecto": 1
+  },
+  "model": "GestiondeFlujos.flujo",
+  "pk": 1
+},
+{
+  "fields": {
+    "id_sprint": 0,
+    "nombre_flujo": "Flujo 2 - Proyecto 1",
+    "id_Proyecto": 1
+  },
+  "model": "GestiondeFlujos.flujo",
+  "pk": 2
+},
+{
+  "fields": {
+    "id_sprint": 0,
+    "nombre_flujo": "Flujo 1 - Proyecto 2",
+    "id_Proyecto": 2
+  },
+  "model": "GestiondeFlujos.flujo",
+  "pk": 3
+},
+{
+  "fields": {
+    "nombre_actividad": "Actividad_1",
+    "id_Flujo": 1,
+    "estado_actividad": "ToDo",
+    "orden_actividad": 1
+  },
+  "model": "GestiondeFlujos.actividad",
+  "pk": 1
+},
+{
+  "fields": {
+    "nombre_actividad": "Actividad_2",
+    "id_Flujo": 1,
+    "estado_actividad": "ToDo",
+    "orden_actividad": 2
+  },
+  "model": "GestiondeFlujos.actividad",
+  "pk": 2
+},
+{
+  "fields": {
+    "nombre_actividad": "Actividad_1",
+    "id_Flujo": 2,
+    "estado_actividad": "ToDo",
+    "orden_actividad": 3
+  },
+  "model": "GestiondeFlujos.actividad",
+  "pk": 3
+},
+{
+  "fields": {
+    "nombre_usuario": "lbenitez",
+    "hora_dia": "2015-06-20T04:41:03.893Z",
+    "observacion": "none",
+    "accion": "Ingreso al sistema el usuario lbenitez "
+  },
+  "model": "GestiondeSistema.sistema",
+  "pk": 1
+},
+{
+  "fields": {
+    "nombre_usuario": "lbenitez",
+    "hora_dia": "2015-06-20T04:45:15.882Z",
+    "observacion": "Ninguno",
+    "accion": "Modificado rol Desarrollador"
+  },
+  "model": "GestiondeSistema.sistema",
+  "pk": 2
+},
+{
+  "fields": {
+    "fecha_inicio": "2015-06-05",
+    "fecha_fin": "2015-07-05",
+    "numero_sprint": 1,
+    "nombre_sprint": "Sprint1",
+    "estado": "Pendiente",
+    "id_proyecto": 1
+  },
+  "model": "GestiondeSprints.sprint",
+  "pk": 1
+},
+{
+  "fields": {
+    "fecha_inicio": "2015-06-20",
+    "fecha_fin": "2015-08-04",
+    "numero_sprint": 2,
+    "nombre_sprint": "Sprint2",
+    "estado": "Pendiente",
+    "id_proyecto": 1
+  },
+  "model": "GestiondeSprints.sprint",
+  "pk": 2
+},
+{
+  "fields": {
+    "fecha_inicio": "2015-06-20",
+    "fecha_fin": "2015-10-18",
+    "numero_sprint": 1,
+    "nombre_sprint": "Sprint3",
+    "estado": "Pendiente",
+    "id_proyecto": 2
+  },
+  "model": "GestiondeSprints.sprint",
+  "pk": 3
+},
+{
+  "fields": {
+    "dia": 29,
+    "horas_trabajadas": 2,
+    "id_sprint": 1
+  },
+  "model": "GestiondeBurndownChart.burndownchartsprint",
+  "pk": 1
+},
+{
+  "fields": {
+    "dia": 28,
+    "horas_trabajadas": 1,
+    "id_sprint": 1
+  },
+  "model": "GestiondeBurndownChart.burndownchartsprint",
+  "pk": 2
+},
+{
+  "fields": {
+    "dia": 27,
+    "horas_trabajadas": 0,
+    "id_sprint": 1
+  },
+  "model": "GestiondeBurndownChart.burndownchartsprint",
+  "pk": 3
+},
+{
+  "fields": {
+    "dia": 26,
+    "horas_trabajadas": 1,
+    "id_sprint": 1
+  },
+  "model": "GestiondeBurndownChart.burndownchartsprint",
+  "pk": 4
+},
+{
+  "fields": {
+    "dia": 25,
+    "horas_trabajadas": 0,
+    "id_sprint": 1
+  },
+  "model": "GestiondeBurndownChart.burndownchartsprint",
+  "pk": 5
+},
+{
+  "fields": {
+    "dia": 74,
+    "horas_trabajadas": 2,
+    "id_proyecto": 1
+  },
+  "model": "GestiondeBurndownChart.burndownchartproyecto",
+  "pk": 1
+},
+{
+  "fields": {
+    "dia": 73,
+    "horas_trabajadas": 1,
+    "id_proyecto": 1
+  },
+  "model": "GestiondeBurndownChart.burndownchartproyecto",
+  "pk": 2
+},
+{
+  "fields": {
+    "dia": 72,
+    "horas_trabajadas": 0,
+    "id_proyecto": 1
+  },
+  "model": "GestiondeBurndownChart.burndownchartproyecto",
+  "pk": 3
+},
+{
+  "fields": {
+    "dia": 71,
+    "horas_trabajadas": 1,
+    "id_proyecto": 1
+  },
+  "model": "GestiondeBurndownChart.burndownchartproyecto",
+  "pk": 4
+},
+{
+  "fields": {
+    "dia": 70,
+    "horas_trabajadas": 0,
+    "id_proyecto": 1
+  },
+  "model": "GestiondeBurndownChart.burndownchartproyecto",
+  "pk": 5
+},
+{
+  "fields": {
+    "codename": "add_logentry",
+    "name": "Can add log entry",
+    "content_type": 1
+  },
+  "model": "auth.permission",
+  "pk": 1
+},
+{
+  "fields": {
+    "codename": "change_logentry",
+    "name": "Can change log entry",
+    "content_type": 1
+  },
+  "model": "auth.permission",
+  "pk": 2
+},
+{
+  "fields": {
+    "codename": "delete_logentry",
+    "name": "Can delete log entry",
+    "content_type": 1
+  },
+  "model": "auth.permission",
+  "pk": 3
+},
+{
+  "fields": {
+    "codename": "add_permission",
+    "name": "Can add permission",
+    "content_type": 2
+  },
+  "model": "auth.permission",
+  "pk": 4
+},
+{
+  "fields": {
+    "codename": "change_permission",
+    "name": "Can change permission",
+    "content_type": 2
+  },
+  "model": "auth.permission",
+  "pk": 5
+},
+{
+  "fields": {
+    "codename": "delete_permission",
+    "name": "Can delete permission",
+    "content_type": 2
+  },
+  "model": "auth.permission",
+  "pk": 6
+},
+{
+  "fields": {
+    "codename": "add_group",
+    "name": "Can add group",
+    "content_type": 3
+  },
+  "model": "auth.permission",
+  "pk": 7
+},
+{
+  "fields": {
+    "codename": "change_group",
+    "name": "Can change group",
+    "content_type": 3
+  },
+  "model": "auth.permission",
+  "pk": 8
+},
+{
+  "fields": {
+    "codename": "delete_group",
+    "name": "Can delete group",
+    "content_type": 3
+  },
+  "model": "auth.permission",
+  "pk": 9
+},
+{
+  "fields": {
+    "codename": "add_user",
+    "name": "Can add user",
+    "content_type": 4
+  },
+  "model": "auth.permission",
+  "pk": 10
+},
+{
+  "fields": {
+    "codename": "change_user",
+    "name": "Can change user",
+    "content_type": 4
+  },
+  "model": "auth.permission",
+  "pk": 11
+},
+{
+  "fields": {
+    "codename": "delete_user",
+    "name": "Can delete user",
+    "content_type": 4
+  },
+  "model": "auth.permission",
+  "pk": 12
+},
+{
+  "fields": {
+    "codename": "add_contenttype",
+    "name": "Can add content type",
+    "content_type": 5
+  },
+  "model": "auth.permission",
+  "pk": 13
+},
+{
+  "fields": {
+    "codename": "change_contenttype",
+    "name": "Can change content type",
+    "content_type": 5
+  },
+  "model": "auth.permission",
+  "pk": 14
+},
+{
+  "fields": {
+    "codename": "delete_contenttype",
+    "name": "Can delete content type",
+    "content_type": 5
+  },
+  "model": "auth.permission",
+  "pk": 15
+},
+{
+  "fields": {
+    "codename": "add_session",
+    "name": "Can add session",
+    "content_type": 6
+  },
+  "model": "auth.permission",
+  "pk": 16
+},
+{
+  "fields": {
+    "codename": "change_session",
+    "name": "Can change session",
+    "content_type": 6
+  },
+  "model": "auth.permission",
+  "pk": 17
+},
+{
+  "fields": {
+    "codename": "delete_session",
+    "name": "Can delete session",
+    "content_type": 6
+  },
+  "model": "auth.permission",
+  "pk": 18
+},
+{
+  "fields": {
+    "codename": "add_site",
+    "name": "Can add site",
+    "content_type": 7
+  },
+  "model": "auth.permission",
+  "pk": 19
+},
+{
+  "fields": {
+    "codename": "change_site",
+    "name": "Can change site",
+    "content_type": 7
+  },
+  "model": "auth.permission",
+  "pk": 20
+},
+{
+  "fields": {
+    "codename": "delete_site",
+    "name": "Can delete site",
+    "content_type": 7
+  },
+  "model": "auth.permission",
+  "pk": 21
+},
+{
+  "fields": {
+    "codename": "gestion_usuario",
+    "name": "gestion de usuario",
+    "content_type": 8
+  },
+  "model": "auth.permission",
+  "pk": 22
+},
+{
+  "fields": {
+    "codename": "consulta_usuario",
+    "name": "consultar usuarios",
+    "content_type": 8
+  },
+  "model": "auth.permission",
+  "pk": 23
+},
+{
+  "fields": {
+    "codename": "modificar_usuario",
+    "name": "modificar usuarios",
+    "content_type": 8
+  },
+  "model": "auth.permission",
+  "pk": 24
+},
+{
+  "fields": {
+    "codename": "eliminar_usuario",
+    "name": "eliminar usuarios",
+    "content_type": 8
+  },
+  "model": "auth.permission",
+  "pk": 25
+},
+{
+  "fields": {
+    "codename": "crear_usuario",
+    "name": "crear usuarios",
+    "content_type": 8
+  },
+  "model": "auth.permission",
+  "pk": 26
+},
+{
+  "fields": {
+    "codename": "listar_usuario",
+    "name": "listar usuarios",
+    "content_type": 8
+  },
+  "model": "auth.permission",
+  "pk": 27
+},
+{
+  "fields": {
+    "codename": "gestion_rol",
+    "name": "gestion roles",
+    "content_type": 9
+  },
+  "model": "auth.permission",
+  "pk": 28
+},
+{
+  "fields": {
+    "codename": "consulta_rol",
+    "name": "consultar roles",
+    "content_type": 9
+  },
+  "model": "auth.permission",
+  "pk": 29
+},
+{
+  "fields": {
+    "codename": "modificar_rol",
+    "name": "modificar roles",
+    "content_type": 9
+  },
+  "model": "auth.permission",
+  "pk": 30
+},
+{
+  "fields": {
+    "codename": "eliminar_rol",
+    "name": "eliminar roles",
+    "content_type": 9
+  },
+  "model": "auth.permission",
+  "pk": 31
+},
+{
+  "fields": {
+    "codename": "crear_rol",
+    "name": "crear roles",
+    "content_type": 9
+  },
+  "model": "auth.permission",
+  "pk": 32
+},
+{
+  "fields": {
+    "codename": "listar_rol",
+    "name": "listar roles",
+    "content_type": 9
+  },
+  "model": "auth.permission",
+  "pk": 33
+},
+{
+  "fields": {
+    "codename": "listar_permiso",
+    "name": "listar permisos",
+    "content_type": 9
+  },
+  "model": "auth.permission",
+  "pk": 34
+},
+{
+  "fields": {
+    "codename": "listar_flujo",
+    "name": "listar flujo",
+    "content_type": 10
+  },
+  "model": "auth.permission",
+  "pk": 35
+},
+{
+  "fields": {
+    "codename": "consulta_flujo",
+    "name": "cosultar flujos",
+    "content_type": 10
+  },
+  "model": "auth.permission",
+  "pk": 36
+},
+{
+  "fields": {
+    "codename": "modificar_flujo",
+    "name": "modificar flujos",
+    "content_type": 10
+  },
+  "model": "auth.permission",
+  "pk": 37
+},
+{
+  "fields": {
+    "codename": "eliminar_flujo",
+    "name": "eliminar flujos",
+    "content_type": 10
+  },
+  "model": "auth.permission",
+  "pk": 38
+},
+{
+  "fields": {
+    "codename": "crear_flujo",
+    "name": "crear flujos",
+    "content_type": 10
+  },
+  "model": "auth.permission",
+  "pk": 39
+},
+{
+  "fields": {
+    "codename": "gestion_flujo",
+    "name": "Gestion de flujos",
+    "content_type": 10
+  },
+  "model": "auth.permission",
+  "pk": 40
+},
+{
+  "fields": {
+    "codename": "listar_actividad",
+    "name": "listar actividad",
+    "content_type": 11
+  },
+  "model": "auth.permission",
+  "pk": 41
+},
+{
+  "fields": {
+    "codename": "consulta_actividad",
+    "name": "cosultar actividad",
+    "content_type": 11
+  },
+  "model": "auth.permission",
+  "pk": 42
+},
+{
+  "fields": {
+    "codename": "modificar_actividad",
+    "name": "modificar actividad",
+    "content_type": 11
+  },
+  "model": "auth.permission",
+  "pk": 43
+},
+{
+  "fields": {
+    "codename": "eliminar_actividad",
+    "name": "eliminar actividad",
+    "content_type": 11
+  },
+  "model": "auth.permission",
+  "pk": 44
+},
+{
+  "fields": {
+    "codename": "crear_actividad",
+    "name": "crear actividad",
+    "content_type": 11
+  },
+  "model": "auth.permission",
+  "pk": 45
+},
+{
+  "fields": {
+    "codename": "listar_proyecto",
+    "name": "listar proyectos",
+    "content_type": 12
+  },
+  "model": "auth.permission",
+  "pk": 46
+},
+{
+  "fields": {
+    "codename": "consulta_proyecto",
+    "name": "cosultar proyectos",
+    "content_type": 12
+  },
+  "model": "auth.permission",
+  "pk": 47
+},
+{
+  "fields": {
+    "codename": "modificar_proyecto",
+    "name": "modificar proyectos",
+    "content_type": 12
+  },
+  "model": "auth.permission",
+  "pk": 48
+},
+{
+  "fields": {
+    "codename": "crear_proyecto",
+    "name": "crear proyectos",
+    "content_type": 12
+  },
+  "model": "auth.permission",
+  "pk": 49
+},
+{
+  "fields": {
+    "codename": "gestion_proyecto",
+    "name": "gestion de proyectos",
+    "content_type": 12
+  },
+  "model": "auth.permission",
+  "pk": 50
+},
+{
+  "fields": {
+    "codename": "modificar_scrummaster",
+    "name": "modificar scrum master de proyectos",
+    "content_type": 12
+  },
+  "model": "auth.permission",
+  "pk": 51
+},
+{
+  "fields": {
+    "codename": "generar_reporte",
+    "name": "generar reporte de proyectos",
+    "content_type": 12
+  },
+  "model": "auth.permission",
+  "pk": 52
+},
+{
+  "fields": {
+    "codename": "consultar_estado_us",
+    "name": "cosultar estado de us",
+    "content_type": 12
+  },
+  "model": "auth.permission",
+  "pk": 53
+},
+{
+  "fields": {
+    "codename": "consultar_auditoria",
+    "name": "consultar auditoria",
+    "content_type": 13
+  },
+  "model": "auth.permission",
+  "pk": 54
+},
+{
+  "fields": {
+    "codename": "listar_userstories",
+    "name": "listar user stories",
+    "content_type": 14
+  },
+  "model": "auth.permission",
+  "pk": 55
+},
+{
+  "fields": {
+    "codename": "consulta_userstories",
+    "name": "cosultar user stories",
+    "content_type": 14
+  },
+  "model": "auth.permission",
+  "pk": 56
+},
+{
+  "fields": {
+    "codename": "modificar_userstories",
+    "name": "modificar user stories",
+    "content_type": 14
+  },
+  "model": "auth.permission",
+  "pk": 57
+},
+{
+  "fields": {
+    "codename": "crear_userstories",
+    "name": "crear user stories",
+    "content_type": 14
+  },
+  "model": "auth.permission",
+  "pk": 58
+},
+{
+  "fields": {
+    "codename": "gestion_userstories",
+    "name": "gestion de user stories",
+    "content_type": 14
+  },
+  "model": "auth.permission",
+  "pk": 59
+},
+{
+  "fields": {
+    "codename": "listar_comentarios",
+    "name": "Listar Comentarios",
+    "content_type": 15
+  },
+  "model": "auth.permission",
+  "pk": 60
+},
+{
+  "fields": {
+    "codename": "agregar_comentarios",
+    "name": "Agregar Comentarios",
+    "content_type": 15
+  },
+  "model": "auth.permission",
+  "pk": 61
+},
+{
+  "fields": {
+    "codename": "visualizar_comentarios",
+    "name": "Visualizar Comentarios",
+    "content_type": 15
+  },
+  "model": "auth.permission",
+  "pk": 62
+},
+{
+  "fields": {
+    "codename": "add_fileattached_model",
+    "name": "Can add file attached_model",
+    "content_type": 16
+  },
+  "model": "auth.permission",
+  "pk": 63
+},
+{
+  "fields": {
+    "codename": "change_fileattached_model",
+    "name": "Can change file attached_model",
+    "content_type": 16
+  },
+  "model": "auth.permission",
+  "pk": 64
+},
+{
+  "fields": {
+    "codename": "delete_fileattached_model",
+    "name": "Can delete file attached_model",
+    "content_type": 16
+  },
+  "model": "auth.permission",
+  "pk": 65
+},
+{
+  "fields": {
+    "codename": "add_file",
+    "name": "Can add file",
+    "content_type": 17
+  },
+  "model": "auth.permission",
+  "pk": 66
+},
+{
+  "fields": {
+    "codename": "change_file",
+    "name": "Can change file",
+    "content_type": 17
+  },
+  "model": "auth.permission",
+  "pk": 67
+},
+{
+  "fields": {
+    "codename": "delete_file",
+    "name": "Can delete file",
+    "content_type": 17
+  },
+  "model": "auth.permission",
+  "pk": 68
+},
+{
+  "fields": {
+    "codename": "listar_sprint",
+    "name": "listar sprint",
+    "content_type": 18
+  },
+  "model": "auth.permission",
+  "pk": 69
+},
+{
+  "fields": {
+    "codename": "consulta_sprint",
+    "name": "cosultar sprint",
+    "content_type": 18
+  },
+  "model": "auth.permission",
+  "pk": 70
+},
+{
+  "fields": {
+    "codename": "modificar_sprint",
+    "name": "modificar sprints",
+    "content_type": 18
+  },
+  "model": "auth.permission",
+  "pk": 71
+},
+{
+  "fields": {
+    "codename": "eliminar_sprint",
+    "name": "eliminar sprints",
+    "content_type": 18
+  },
+  "model": "auth.permission",
+  "pk": 72
+},
+{
+  "fields": {
+    "codename": "crear_sprint",
+    "name": "crear sprints",
+    "content_type": 18
+  },
+  "model": "auth.permission",
+  "pk": 73
+},
+{
+  "fields": {
+    "codename": "gestion_sprint",
+    "name": "Gestion de sprints",
+    "content_type": 18
+  },
+  "model": "auth.permission",
+  "pk": 74
+},
+{
+  "fields": {
+    "codename": "asignar_us_a_sprint",
+    "name": "Asignar US a Sprint",
+    "content_type": 18
+  },
+  "model": "auth.permission",
+  "pk": 75
+},
+{
+  "fields": {
+    "codename": "listar_detalle_sprint",
+    "name": "listar detalle_sprint",
+    "content_type": 19
+  },
+  "model": "auth.permission",
+  "pk": 76
+},
+{
+  "fields": {
+    "codename": "consulta_detalle_sprint",
+    "name": "cosultar detalle_sprint",
+    "content_type": 19
+  },
+  "model": "auth.permission",
+  "pk": 77
+},
+{
+  "fields": {
+    "codename": "modificar_detalle_sprint",
+    "name": "modificar detalle_sprints",
+    "content_type": 19
+  },
+  "model": "auth.permission",
+  "pk": 78
+},
+{
+  "fields": {
+    "codename": "eliminar_detalle_sprint",
+    "name": "eliminar detalle_sprints",
+    "content_type": 19
+  },
+  "model": "auth.permission",
+  "pk": 79
+},
+{
+  "fields": {
+    "codename": "crear_detalle_sprint",
+    "name": "crear detalle_sprints",
+    "content_type": 19
+  },
+  "model": "auth.permission",
+  "pk": 80
+},
+{
+  "fields": {
+    "codename": "gestion_detalle_sprint",
+    "name": "Gestion de detalle_sprints",
+    "content_type": 19
+  },
+  "model": "auth.permission",
+  "pk": 81
+},
+{
+  "fields": {
+    "codename": "listar_proyectos_con_tableros_kanban",
+    "name": "Listar Proyectos con tablero kanban",
+    "content_type": 20
+  },
+  "model": "auth.permission",
+  "pk": 82
+},
+{
+  "fields": {
+    "codename": "listar_tablero_kanban",
+    "name": "Listar tablero kanban",
+    "content_type": 20
+  },
+  "model": "auth.permission",
+  "pk": 83
+},
+{
+  "fields": {
+    "codename": "consulta_tablero_kanban",
+    "name": "Cosultar tablero kanban",
+    "content_type": 20
+  },
+  "model": "auth.permission",
+  "pk": 84
+},
+{
+  "fields": {
+    "codename": "modificar_tablero_kanban",
+    "name": "Modificar tablero kanban",
+    "content_type": 20
+  },
+  "model": "auth.permission",
+  "pk": 85
+},
+{
+  "fields": {
+    "codename": "eliminar_tablero_kanban",
+    "name": "Eliminar tablero kanban",
+    "content_type": 20
+  },
+  "model": "auth.permission",
+  "pk": 86
+},
+{
+  "fields": {
+    "codename": "crear_tablero_kanban",
+    "name": "Crear tablero kanban",
+    "content_type": 20
+  },
+  "model": "auth.permission",
+  "pk": 87
+},
+{
+  "fields": {
+    "codename": "gestion_tablero_kanban",
+    "name": "Gestion de tablero kanban",
+    "content_type": 20
+  },
+  "model": "auth.permission",
+  "pk": 88
+},
+{
+  "fields": {
+    "codename": "cambiar_us_de_actividad",
+    "name": "Cambiar US de actividad dentro del tablero kanban",
+    "content_type": 20
+  },
+  "model": "auth.permission",
+  "pk": 89
+},
+{
+  "fields": {
+    "codename": "cambiar_us_de_estado",
+    "name": "Cambiar US de estado dentro del tablero kanban",
+    "content_type": 20
+  },
+  "model": "auth.permission",
+  "pk": 90
+},
+{
+  "fields": {
+    "codename": "crear_mensaje",
+    "name": "crear mensajes",
+    "content_type": 21
+  },
+  "model": "auth.permission",
+  "pk": 91
+},
+{
+  "fields": {
+    "codename": "listar_mensajes",
+    "name": "listar mensajes",
+    "content_type": 21
+  },
+  "model": "auth.permission",
+  "pk": 92
+},
+{
+  "fields": {
+    "codename": "visualizar_mensaje",
+    "name": "visualizar mensajes",
+    "content_type": 21
+  },
+  "model": "auth.permission",
+  "pk": 93
+},
+{
+  "fields": {
+    "codename": "eliminar_mensaje",
+    "name": "eliminar mensajes",
+    "content_type": 21
+  },
+  "model": "auth.permission",
+  "pk": 94
+},
+{
+  "fields": {
+    "codename": "gestion_de_mensajeria",
+    "name": "gestion de mensajeria",
+    "content_type": 21
+  },
+  "model": "auth.permission",
+  "pk": 95
+},
+{
+  "fields": {
+    "codename": "modificar_burndown_chart_sprint",
+    "name": "Actualizar Burndown Chart Sprint",
+    "content_type": 22
+  },
+  "model": "auth.permission",
+  "pk": 96
+},
+{
+  "fields": {
+    "codename": "consulta_burndown_chart_sprint",
+    "name": "Visualizar Burndown Chart Sprint",
+    "content_type": 22
+  },
+  "model": "auth.permission",
+  "pk": 97
+},
+{
+  "fields": {
+    "codename": "modificar_burndown_chart_proyecto",
+    "name": "Actualizar Burndown Chart Proyecto",
+    "content_type": 23
+  },
+  "model": "auth.permission",
+  "pk": 98
+},
+{
+  "fields": {
+    "codename": "consulta_burndown_chart_proyecto",
+    "name": "Visualizar Burndown Chart Proyecto",
+    "content_type": 23
+  },
+  "model": "auth.permission",
+  "pk": 99
+},
+{
+  "fields": {
+    "codename": "crear_release",
+    "name": " crear releases",
+    "content_type": 24
+  },
+  "model": "auth.permission",
+  "pk": 100
+},
+{
+  "fields": {
+    "codename": "listar_release",
+    "name": " listar releases",
+    "content_type": 24
+  },
+  "model": "auth.permission",
+  "pk": 101
+},
+{
+  "fields": {
+    "codename": "consultar_release",
+    "name": " consultar releases",
+    "content_type": 24
+  },
+  "model": "auth.permission",
+  "pk": 102
+},
+{
+  "fields": {
+    "codename": "gestion_de_release",
+    "name": " gestion de releases",
+    "content_type": 24
+  },
+  "model": "auth.permission",
+  "pk": 103
+},
+{
+  "fields": {
+    "permissions": [
+      41,
+      40,
+      35,
+      95,
+      92,
+      50,
+      46,
+      102,
+      103,
+      101,
+      29,
+      28,
+      34,
+      33,
+      54,
+      74,
+      69,
+      81,
+      76,
+      88,
+      82,
+      83,
+      60,
+      59,
+      55,
+      23,
+      22,
+      27
+    ],
+    "name": "Cliente"
+  },
+  "model": "auth.group",
+  "pk": 1
+},
+{
+  "fields": {
+    "permissions": [
+      1,
+      2,
+      3,
+      7,
+      8,
+      9,
+      4,
+      5,
+      6,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      45,
+      44,
+      41,
+      43,
+      39,
+      38,
+      40,
+      35,
+      37,
+      91,
+      94,
+      95,
+      92,
+      49,
+      52,
+      50,
+      46,
+      48,
+      51,
+      102,
+      100,
+      103,
+      101,
+      29,
+      32,
+      31,
+      28,
+      34,
+      33,
+      30,
+      54,
+      73,
+      72,
+      74,
+      69,
+      71,
+      80,
+      79,
+      81,
+      76,
+      78,
+      87,
+      86,
+      88,
+      82,
+      83,
+      85,
+      60,
+      66,
+      67,
+      68,
+      63,
+      64,
+      65,
+      58,
+      59,
+      55,
+      57,
+      23,
+      26,
+      25,
+      22,
+      27,
+      24,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "name": "Scrum Master"
+  },
+  "model": "auth.group",
+  "pk": 2
+},
+{
+  "fields": {
+    "permissions": [
+      99,
+      97,
+      42,
+      41,
+      36,
+      40,
+      35,
+      91,
+      94,
+      95,
+      92,
+      93,
+      47,
+      53,
+      52,
+      50,
+      46,
+      102,
+      103,
+      101,
+      54,
+      70,
+      74,
+      69,
+      80,
+      79,
+      81,
+      76,
+      78,
+      89,
+      90,
+      87,
+      88,
+      82,
+      83,
+      85,
+      61,
+      60,
+      62,
+      66,
+      67,
+      68,
+      63,
+      64,
+      65,
+      56,
+      59,
+      55,
+      57,
+      19,
+      20,
+      21
+    ],
+    "name": "Desarrollador"
+  },
+  "model": "auth.group",
+  "pk": 3
+},
+{
+  "fields": {
+    "permissions": [
+      1,
+      2,
+      3,
+      7,
+      8,
+      9,
+      4,
+      5,
+      6,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      99,
+      98,
+      97,
+      96,
+      42,
+      45,
+      44,
+      41,
+      43,
+      36,
+      39,
+      38,
+      40,
+      35,
+      37,
+      91,
+      94,
+      95,
+      92,
+      93,
+      47,
+      53,
+      49,
+      52,
+      50,
+      46,
+      48,
+      51,
+      102,
+      100,
+      103,
+      101,
+      29,
+      32,
+      31,
+      28,
+      34,
+      33,
+      30,
+      54,
+      75,
+      70,
+      73,
+      72,
+      74,
+      69,
+      71,
+      77,
+      80,
+      79,
+      81,
+      76,
+      78,
+      89,
+      90,
+      84,
+      87,
+      86,
+      88,
+      82,
+      83,
+      85,
+      61,
+      60,
+      62,
+      66,
+      67,
+      68,
+      63,
+      64,
+      65,
+      56,
+      58,
+      59,
+      55,
+      57,
+      23,
+      26,
+      25,
+      22,
+      27,
+      24,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "name": "Administrador"
+  },
+  "model": "auth.group",
+  "pk": 4
+},
+{
+  "fields": {
+    "is_active": true,
+    "is_superuser": true,
+    "groups": [
+      1,
+      2,
+      4,
+      3
+    ],
+    "date_joined": "2015-06-20T04:37:43.662Z",
+    "email": "admin@sgpa.com",
+    "first_name": "admin",
+    "username": "admin",
+    "user_permissions": [],
+    "last_name": "admin",
+    "is_staff": true,
+    "password": "pbkdf2_sha256$12000$63cGvuuHxY1L$bpiw0PDuTt7ngezscSpWhHftxiOTKKMsMxq9zK8+t0Q=",
+    "last_login": "2015-06-20T04:37:43.662Z"
+  },
+  "model": "auth.user",
+  "pk": 1
+},
+{
+  "fields": {
+    "is_active": true,
+    "is_superuser": false,
+    "groups": [
+      1,
+      2,
+      4,
+      3
+    ],
+    "date_joined": "2015-06-20T04:37:43.788Z",
+    "email": "froman@sgpa.com",
+    "first_name": "fede",
+    "username": "froman",
+    "user_permissions": [],
+    "last_name": "roman",
+    "is_staff": true,
+    "password": "pbkdf2_sha256$12000$NQRimOLEkrVJ$0SR0wFJagB7/9AtMDgzErTagjveIWWiO943MCozemMs=",
+    "last_login": "2015-06-20T04:37:43.788Z"
+  },
+  "model": "auth.user",
+  "pk": 2
+},
+{
+  "fields": {
+    "is_active": true,
+    "is_superuser": false,
+    "groups": [
+      1,
+      2,
+      4,
+      3
+    ],
+    "date_joined": "2015-06-20T04:37:43.892Z",
+    "email": "lbenitez@sgpa.com",
+    "first_name": "leo",
+    "username": "lbenitez",
+    "user_permissions": [],
+    "last_name": "benitez",
+    "is_staff": true,
+    "password": "pbkdf2_sha256$15000$JvzqsEvXHgO6$KANhZNoK1JguEnycE1eFD6kHx8VotoVuxqfpliaNutI=",
+    "last_login": "2015-06-20T04:41:03.871Z"
+  },
+  "model": "auth.user",
+  "pk": 3
+},
+{
+  "fields": {
+    "is_active": true,
+    "is_superuser": false,
+    "groups": [
+      1,
+      2,
+      4,
+      3
+    ],
+    "date_joined": "2015-06-20T04:37:43.995Z",
+    "email": "bmaluff@sgpa.com",
+    "first_name": "bader",
+    "username": "bmaluff",
+    "user_permissions": [],
+    "last_name": "maluff",
+    "is_staff": true,
+    "password": "pbkdf2_sha256$12000$v74HX2P4UrDz$9eUdUuBuWJMkbqlbGGSjQIOvQ53zknkFC/z/EhNV/2c=",
+    "last_login": "2015-06-20T04:37:43.995Z"
+  },
+  "model": "auth.user",
+  "pk": 4
+},
+{
+  "fields": {
+    "is_active": true,
+    "is_superuser": false,
+    "groups": [
+      3
+    ],
+    "date_joined": "2015-06-20T04:37:44.090Z",
+    "email": "desarrollador1@sgpa.com",
+    "first_name": "desarrollador1",
+    "username": "desarrollador1",
+    "user_permissions": [],
+    "last_name": "admin",
+    "is_staff": true,
+    "password": "pbkdf2_sha256$12000$JhI0xBziax6w$cNcbdDO2w0kuko+DwAgdT02QFiv9UP5fdW8Vxg4FWak=",
+    "last_login": "2015-06-20T04:37:44.090Z"
+  },
+  "model": "auth.user",
+  "pk": 5
+},
+{
+  "fields": {
+    "is_active": true,
+    "is_superuser": false,
+    "groups": [
+      3
+    ],
+    "date_joined": "2015-06-20T04:37:44.194Z",
+    "email": "desarrollador2@sgpa.com",
+    "first_name": "desarrollador2",
+    "username": "desarrollador2",
+    "user_permissions": [],
+    "last_name": "admin",
+    "is_staff": true,
+    "password": "pbkdf2_sha256$12000$FjF8WrGKqCmY$VFTyx4WbTa+PrmdCt3RwzVD+llv82RUtvVsf1ddJRzs=",
+    "last_login": "2015-06-20T04:37:44.194Z"
+  },
+  "model": "auth.user",
+  "pk": 6
+},
+{
+  "fields": {
+    "is_active": true,
+    "is_superuser": false,
+    "groups": [
+      3
+    ],
+    "date_joined": "2015-06-20T04:37:44.298Z",
+    "email": "desarrollador3@sgpa.com",
+    "first_name": "desarrollador3",
+    "username": "desarrollador3",
+    "user_permissions": [],
+    "last_name": "admin",
+    "is_staff": true,
+    "password": "pbkdf2_sha256$12000$rNLnurbxLCBE$z78TTPunkaj2MA/XzIru93pELmHR8qzZFGT97f7+NOI=",
+    "last_login": "2015-06-20T04:37:44.298Z"
+  },
+  "model": "auth.user",
+  "pk": 7
+},
+{
+  "fields": {
+    "is_active": true,
+    "is_superuser": false,
+    "groups": [
+      2
+    ],
+    "date_joined": "2015-06-20T04:37:44.400Z",
+    "email": "scrummaster1@sgpa.com",
+    "first_name": "scrummaster1",
+    "username": "scrummaster1",
+    "user_permissions": [],
+    "last_name": "admin",
+    "is_staff": true,
+    "password": "pbkdf2_sha256$12000$rb6i4PVw9gfj$9nwuv4VR8uQwKTkVi7//yQP/8wB592il/0UC4EKZxWY=",
+    "last_login": "2015-06-20T04:37:44.400Z"
+  },
+  "model": "auth.user",
+  "pk": 8
+},
+{
+  "fields": {
+    "is_active": true,
+    "is_superuser": false,
+    "groups": [
+      2
+    ],
+    "date_joined": "2015-06-20T04:37:44.488Z",
+    "email": "scrummaster2@sgpa.com",
+    "first_name": "scrummaster2",
+    "username": "scrummaster2",
+    "user_permissions": [],
+    "last_name": "admin",
+    "is_staff": true,
+    "password": "pbkdf2_sha256$12000$adBnYqD0e92w$G937RE59cXqybwoJgauXoocRI2Hm+udUhj7AqfBkBmM=",
+    "last_login": "2015-06-20T04:37:44.488Z"
+  },
+  "model": "auth.user",
+  "pk": 9
+},
+{
+  "fields": {
+    "is_active": true,
+    "is_superuser": true,
+    "groups": [
+      1
+    ],
+    "date_joined": "2015-06-20T04:37:44.602Z",
+    "email": "cliente1@sgpa.com",
+    "first_name": "cliente1",
+    "username": "cliente1",
+    "user_permissions": [],
+    "last_name": "admin",
+    "is_staff": true,
+    "password": "pbkdf2_sha256$12000$r38xsZP9PJXC$QC0RwdNVzHoB30uZmfu8gk4rf+q0d6iM6WC0FxDGY40=",
+    "last_login": "2015-06-20T04:37:44.602Z"
+  },
+  "model": "auth.user",
+  "pk": 10
+},
+{
+  "fields": {
+    "is_active": true,
+    "is_superuser": true,
+    "groups": [
+      1
+    ],
+    "date_joined": "2015-06-20T04:37:44.694Z",
+    "email": "cliente2@sgpa.com",
+    "first_name": "cliente2",
+    "username": "cliente2",
+    "user_permissions": [],
+    "last_name": "admin",
+    "is_staff": true,
+    "password": "pbkdf2_sha256$12000$kaOeknBSTwky$cqx5/waHiXiFvovM48nqVrtRooizcjWJDUKuyfApWO4=",
+    "last_login": "2015-06-20T04:37:44.694Z"
+  },
+  "model": "auth.user",
+  "pk": 11
+},
+{
+  "fields": {
+    "domicilio": "no especificado",
+    "user_permissions": [],
+    "groups": [
+      1,
+      2,
+      4,
+      3
+    ],
+    "telefono": 0,
+    "notificaciones": 0,
+    "observacion": "no especificado"
+  },
+  "model": "GestiondeUsuarios.usuario",
+  "pk": 1
+},
+{
+  "fields": {
+    "domicilio": "no especificado",
+    "user_permissions": [],
+    "groups": [
+      1,
+      2,
+      4,
+      3
+    ],
+    "telefono": 0,
+    "notificaciones": 0,
+    "observacion": "no especificado"
+  },
+  "model": "GestiondeUsuarios.usuario",
+  "pk": 2
+},
+{
+  "fields": {
+    "domicilio": "no especificado",
+    "user_permissions": [],
+    "groups": [
+      1,
+      2,
+      4,
+      3
+    ],
+    "telefono": 0,
+    "notificaciones": 0,
+    "observacion": "no especificado"
+  },
+  "model": "GestiondeUsuarios.usuario",
+  "pk": 3
+},
+{
+  "fields": {
+    "domicilio": "no especificado",
+    "user_permissions": [],
+    "groups": [
+      1,
+      2,
+      4,
+      3
+    ],
+    "telefono": 0,
+    "notificaciones": 0,
+    "observacion": "no especificado"
+  },
+  "model": "GestiondeUsuarios.usuario",
+  "pk": 4
+},
+{
+  "fields": {
+    "domicilio": "no especificado",
+    "user_permissions": [],
+    "groups": [
+      3
+    ],
+    "telefono": 0,
+    "notificaciones": 0,
+    "observacion": "no especificado"
+  },
+  "model": "GestiondeUsuarios.usuario",
+  "pk": 5
+},
+{
+  "fields": {
+    "domicilio": "no especificado",
+    "user_permissions": [],
+    "groups": [
+      3
+    ],
+    "telefono": 0,
+    "notificaciones": 0,
+    "observacion": "no especificado"
+  },
+  "model": "GestiondeUsuarios.usuario",
+  "pk": 6
+},
+{
+  "fields": {
+    "domicilio": "no especificado",
+    "user_permissions": [],
+    "groups": [
+      3
+    ],
+    "telefono": 0,
+    "notificaciones": 0,
+    "observacion": "no especificado"
+  },
+  "model": "GestiondeUsuarios.usuario",
+  "pk": 7
+},
+{
+  "fields": {
+    "domicilio": "no especificado",
+    "user_permissions": [],
+    "groups": [
+      2
+    ],
+    "telefono": 0,
+    "notificaciones": 0,
+    "observacion": "no especificado"
+  },
+  "model": "GestiondeUsuarios.usuario",
+  "pk": 8
+},
+{
+  "fields": {
+    "domicilio": "no especificado",
+    "user_permissions": [],
+    "groups": [
+      2
+    ],
+    "telefono": 0,
+    "notificaciones": 0,
+    "observacion": "no especificado"
+  },
+  "model": "GestiondeUsuarios.usuario",
+  "pk": 9
+},
+{
+  "fields": {
+    "domicilio": "no especificado",
+    "user_permissions": [],
+    "groups": [
+      1
+    ],
+    "telefono": 0,
+    "notificaciones": 0,
+    "observacion": "no especificado"
+  },
+  "model": "GestiondeUsuarios.usuario",
+  "pk": 10
+},
+{
+  "fields": {
+    "domicilio": "no especificado",
+    "user_permissions": [],
+    "groups": [
+      1
+    ],
+    "telefono": 0,
+    "notificaciones": 0,
+    "observacion": "no especificado"
+  },
+  "model": "GestiondeUsuarios.usuario",
+  "pk": 11
+},
+{
+  "fields": {
+    "permissions": [
+      41,
+      40,
+      35,
+      95,
+      92,
+      50,
+      46,
+      102,
+      103,
+      101,
+      29,
+      28,
+      34,
+      33,
+      54,
+      74,
+      69,
+      81,
+      76,
+      88,
+      82,
+      83,
+      60,
+      59,
+      55,
+      23,
+      22,
+      27
+    ]
+  },
+  "model": "GestiondeRolesyPermisos.rol",
+  "pk": 1
+},
+{
+  "fields": {
+    "permissions": [
+      1,
+      2,
+      3,
+      7,
+      8,
+      9,
+      4,
+      5,
+      6,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      45,
+      44,
+      41,
+      43,
+      39,
+      38,
+      40,
+      35,
+      37,
+      91,
+      94,
+      95,
+      92,
+      49,
+      52,
+      50,
+      46,
+      48,
+      51,
+      102,
+      100,
+      103,
+      101,
+      29,
+      32,
+      31,
+      28,
+      34,
+      33,
+      30,
+      54,
+      73,
+      72,
+      74,
+      69,
+      71,
+      80,
+      79,
+      81,
+      76,
+      78,
+      87,
+      86,
+      88,
+      82,
+      83,
+      85,
+      60,
+      66,
+      67,
+      68,
+      63,
+      64,
+      65,
+      58,
+      59,
+      55,
+      57,
+      23,
+      26,
+      25,
+      22,
+      27,
+      24,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ]
+  },
+  "model": "GestiondeRolesyPermisos.rol",
+  "pk": 2
+},
+{
+  "fields": {
+    "permissions": [
+      99,
+      97,
+      42,
+      41,
+      36,
+      40,
+      35,
+      91,
+      94,
+      95,
+      92,
+      93,
+      47,
+      53,
+      52,
+      50,
+      46,
+      102,
+      103,
+      101,
+      54,
+      70,
+      74,
+      69,
+      80,
+      79,
+      81,
+      76,
+      78,
+      89,
+      90,
+      87,
+      88,
+      82,
+      83,
+      85,
+      61,
+      60,
+      62,
+      66,
+      67,
+      68,
+      63,
+      64,
+      65,
+      56,
+      59,
+      55,
+      57,
+      19,
+      20,
+      21
+    ]
+  },
+  "model": "GestiondeRolesyPermisos.rol",
+  "pk": 3
+},
+{
+  "fields": {
+    "permissions": [
+      1,
+      2,
+      3,
+      7,
+      8,
+      9,
+      4,
+      5,
+      6,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      99,
+      98,
+      97,
+      96,
+      42,
+      45,
+      44,
+      41,
+      43,
+      36,
+      39,
+      38,
+      40,
+      35,
+      37,
+      91,
+      94,
+      95,
+      92,
+      93,
+      47,
+      53,
+      49,
+      52,
+      50,
+      46,
+      48,
+      51,
+      102,
+      100,
+      103,
+      101,
+      29,
+      32,
+      31,
+      28,
+      34,
+      33,
+      30,
+      54,
+      75,
+      70,
+      73,
+      72,
+      74,
+      69,
+      71,
+      77,
+      80,
+      79,
+      81,
+      76,
+      78,
+      89,
+      90,
+      84,
+      87,
+      86,
+      88,
+      82,
+      83,
+      85,
+      61,
+      60,
+      62,
+      66,
+      67,
+      68,
+      63,
+      64,
+      65,
+      56,
+      58,
+      59,
+      55,
+      57,
+      23,
+      26,
+      25,
+      22,
+      27,
+      24,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ]
+  },
+  "model": "GestiondeRolesyPermisos.rol",
+  "pk": 4
+},
+{
+  "fields": {
+    "equipo_desarrollo": [
+      1,
+      4,
+      5,
+      6,
+      3
+    ],
+    "fecha_inicio": "2015-06-05",
+    "codigo_proyecto": "pro1",
+    "descripcion_proyecto": "proyecto 1",
+    "cliente": 10,
+    "fecha_finalizacion": "2015-08-19",
+    "scrum_master": 2,
+    "cantidad_sprints": 0,
+    "nombre_proyecto": "Proyecto 1",
+    "estado_proyecto": "PENDIENTE"
+  },
+  "model": "GestiondeProyectos.proyecto",
+  "pk": 1
+},
+{
+  "fields": {
+    "equipo_desarrollo": [
+      2,
+      4,
+      5,
+      6
+    ],
+    "fecha_inicio": "2015-06-20",
+    "codigo_proyecto": "pro2",
+    "descripcion_proyecto": "proyecto 2",
+    "cliente": 2,
+    "fecha_finalizacion": "2015-09-18",
+    "scrum_master": 3,
+    "cantidad_sprints": 0,
+    "nombre_proyecto": "Proyecto 2",
+    "estado_proyecto": "PENDIENTE"
+  },
+  "model": "GestiondeProyectos.proyecto",
+  "pk": 2
+},
+{
+  "fields": {
+    "equipo_desarrollo": [
+      2,
+      5,
+      6,
+      3
+    ],
+    "fecha_inicio": "2015-06-20",
+    "codigo_proyecto": "pro3",
+    "descripcion_proyecto": "proyecto 3",
+    "cliente": 3,
+    "fecha_finalizacion": "2015-10-18",
+    "scrum_master": 4,
+    "cantidad_sprints": 0,
+    "nombre_proyecto": "Proyecto 3",
+    "estado_proyecto": "PENDIENTE"
+  },
+  "model": "GestiondeProyectos.proyecto",
+  "pk": 3
+},
+{
+  "fields": {
+    "estado_en_actividad": "ToDo",
+    "porcentaje_realizado": 100,
+    "horas_dedicadas": 36,
+    "release": null,
+    "codigo": "us-1",
+    "usuario_asignado": 2,
+    "proyecto": 1,
+    "id_flujo": 0,
+    "prioridad": "ALTA",
+    "size": 8.0,
+    "valor_tecnico": 8,
+    "nombre": "US1 - Proyecto1",
+    "valor_de_negocio": 4,
+    "nombre_sprint": "Sprint1",
+    "id_actividad": 0,
+    "descripcion": "US",
+    "estado": "APROBADO"
+  },
+  "model": "GestiondeUserStories.userstory",
+  "pk": 1
+},
+{
+  "fields": {
+    "estado_en_actividad": "ToDo",
+    "porcentaje_realizado": 100,
+    "horas_dedicadas": 40,
+    "release": null,
+    "codigo": "us-2",
+    "usuario_asignado": 2,
+    "proyecto": 1,
+    "id_flujo": 0,
+    "prioridad": "ALTA",
+    "size": 3.0,
+    "valor_tecnico": 8,
+    "nombre": "US2 - Proyecto1",
+    "valor_de_negocio": 4,
+    "nombre_sprint": "Sprint1",
+    "id_actividad": 0,
+    "descripcion": "US",
+    "estado": "APROBADO"
+  },
+  "model": "GestiondeUserStories.userstory",
+  "pk": 2
+},
+{
+  "fields": {
+    "estado_en_actividad": "ToDo",
+    "porcentaje_realizado": 0,
+    "horas_dedicadas": 0,
+    "release": null,
+    "codigo": "us-3",
+    "usuario_asignado": 2,
+    "proyecto": 1,
+    "id_flujo": 0,
+    "prioridad": "ALTA",
+    "size": 5.0,
+    "valor_tecnico": 8,
+    "nombre": "US3 - Proyecto1",
+    "valor_de_negocio": 4,
+    "nombre_sprint": "Sprint1",
+    "id_actividad": 0,
+    "descripcion": "US",
+    "estado": "PENDIENTE"
+  },
+  "model": "GestiondeUserStories.userstory",
+  "pk": 3
+},
+{
+  "fields": {
+    "estado_en_actividad": "ToDo",
+    "porcentaje_realizado": 0,
+    "horas_dedicadas": 0,
+    "release": null,
+    "codigo": "us-1",
+    "usuario_asignado": 3,
+    "proyecto": 2,
+    "id_flujo": 0,
+    "prioridad": "ALTA",
+    "size": 10.0,
+    "valor_tecnico": 8,
+    "nombre": "US1 - Proyecto2",
+    "valor_de_negocio": 4,
+    "nombre_sprint": "No Asignado",
+    "id_actividad": 0,
+    "descripcion": "US",
+    "estado": "PENDIENTE"
+  },
+  "model": "GestiondeUserStories.userstory",
+  "pk": 4
+},
+{
+  "fields": {
+    "estado_en_actividad": "ToDo",
+    "porcentaje_realizado": 0,
+    "horas_dedicadas": 0,
+    "release": null,
+    "codigo": "us-2",
+    "usuario_asignado": 3,
+    "proyecto": 2,
+    "id_flujo": 0,
+    "prioridad": "ALTA",
+    "size": 10.0,
+    "valor_tecnico": 8,
+    "nombre": "US2 - Proyecto2",
+    "valor_de_negocio": 4,
+    "nombre_sprint": "No Asignado",
+    "id_actividad": 0,
+    "descripcion": "US",
+    "estado": "PENDIENTE"
+  },
+  "model": "GestiondeUserStories.userstory",
+  "pk": 5
+},
+{
+  "fields": {
+    "estado_en_actividad": "ToDo",
+    "porcentaje_realizado": 0,
+    "horas_dedicadas": 0,
+    "release": null,
+    "codigo": "us-3",
+    "usuario_asignado": 3,
+    "proyecto": 2,
+    "id_flujo": 0,
+    "prioridad": "ALTA",
+    "size": 10.0,
+    "valor_tecnico": 8,
+    "nombre": "US3 - Proyecto2",
+    "valor_de_negocio": 4,
+    "nombre_sprint": "No Asignado",
+    "id_actividad": 0,
+    "descripcion": "US",
+    "estado": "PENDIENTE"
+  },
+  "model": "GestiondeUserStories.userstory",
+  "pk": 6
+},
+{
+  "fields": {
+    "estado_en_actividad": "ToDo",
+    "porcentaje_realizado": 0,
+    "horas_dedicadas": 0,
+    "release": null,
+    "codigo": "us-1",
+    "usuario_asignado": 3,
+    "proyecto": 3,
+    "id_flujo": 0,
+    "prioridad": "ALTA",
+    "size": 10.0,
+    "valor_tecnico": 8,
+    "nombre": "US1 - Proyecto3",
+    "valor_de_negocio": 4,
+    "nombre_sprint": "No Asignado",
+    "id_actividad": 0,
+    "descripcion": "US",
+    "estado": "PENDIENTE"
+  },
+  "model": "GestiondeUserStories.userstory",
+  "pk": 7
+},
+{
+  "fields": {
+    "estado_en_actividad": "ToDo",
+    "porcentaje_realizado": 0,
+    "horas_dedicadas": 0,
+    "release": null,
+    "codigo": "us-2",
+    "usuario_asignado": 3,
+    "proyecto": 3,
+    "id_flujo": 0,
+    "prioridad": "ALTA",
+    "size": 10.0,
+    "valor_tecnico": 8,
+    "nombre": "US2 - Proyecto3",
+    "valor_de_negocio": 4,
+    "nombre_sprint": "No Asignado",
+    "id_actividad": 0,
+    "descripcion": "US",
+    "estado": "PENDIENTE"
+  },
+  "model": "GestiondeUserStories.userstory",
+  "pk": 8
+},
+{
+  "fields": {
+    "estado_en_actividad": "ToDo",
+    "porcentaje_realizado": 0,
+    "horas_dedicadas": 0,
+    "release": null,
+    "codigo": "us-3",
+    "usuario_asignado": 3,
+    "proyecto": 3,
+    "id_flujo": 0,
+    "prioridad": "ALTA",
+    "size": 10.0,
+    "valor_tecnico": 8,
+    "nombre": "US3 - Proyecto3",
+    "valor_de_negocio": 4,
+    "nombre_sprint": "No Asignado",
+    "id_actividad": 0,
+    "descripcion": "US",
+    "estado": "PENDIENTE"
+  },
+  "model": "GestiondeUserStories.userstory",
+  "pk": 9
+}
+]

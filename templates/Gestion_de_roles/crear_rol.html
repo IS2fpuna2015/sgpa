@@ -1,0 +1,17 @@
+{% extends 'Sistema/principal.html' %}
+
+{% block content %}
+    {{ formulario.media }}
+    <div style="text-align: center;" class="jumbotron">
+        <h2>Creacion de Rol</h2>
+
+        <form id="formulario" method="post" action="">{% csrf_token %}
+            <table class="table" align="center"><p>{{ formulario.as_table }}</p></table>
+            <div align="center">
+
+                {% if perms.GestiondeRolesyPermisos.crear_rol %}<input type="submit" class="btn btn-primary" name="Guardar" value="Guardar">{%endif%}
+                <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Cancelar">
+            </div>
+        </form>
+    </div>
+{% endblock %}

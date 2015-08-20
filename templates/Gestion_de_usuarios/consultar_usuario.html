@@ -1,0 +1,40 @@
+{% extends 'Sistema/principal.html' %}
+
+
+
+{% block content %}
+<div  style="text-align: center;" class="jumbotron">
+    <h2>Consultar usuario</h2>
+
+    <form action="" method="post"  style="text-align:left; ">{% csrf_token %}
+        <div align="center" ><br><br>
+            <label>Nombre</label>
+            <label><input id="username" type="text" name="username"  value="{{usuario.username}}" readonly></label><br><br>
+            <label>Nombre de usuario real</label>
+            <label><input id="firstname" type="text" name="firstname"  value="{{usuario.first_name}}" readonly></label><br><br>
+            <label>Apellido</label>
+            <label><input id="lastname" type="text" name="lastname"  value="{{usuario.last_name}}" readonly></label><br><br>
+            <label>Email</label>
+            <label><input id="email" type="email" name="email"  value="{{usuario.email}}" readonly></label><br><br>
+            <label>Telefono</label>
+            <label><input id="telefono" type="number" name="telefono"  value="{{usuario.telefono}}" readonly></label><br><br>
+             <label>Domicilio</label>
+            <label><input id="domicilio" type="text" name="domicilio"  value="{{usuario.domicilio}}" readonly></label><br><br>
+             <label>Observacion</label>
+            <label><input id="observacion" type="text" name="observacion"  value="{{usuario.observacion}}" readonly></label><br><br>
+
+            <!--<label>Password</label>
+            <label><input id="password" type="password" name="password" value="{{usuario.password}}" readonly></label><br><br>-->
+             <label>Usuario activo</label>
+            <label><input id="activo" type="checkbox" name="activo" checked="value" value="{{usuario.is_active}}"  readonly disabled></label><br><br>
+        </div>
+        <div align="center">
+            <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Retroceder">
+        </div>
+
+    </form>
+
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'Sistema/principal.html' %}
+
+{% block content %}
+    {{ formulario.media }}
+    <div style="text-align: center;" class="jumbotron">
+        <h2>Creacion de Sprint para proyecto {{ nombre_proyecto }}</h2>
+        {% if error == 'nombre' %}
+            <div class="alert alert-danger alert-dismissible " role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> Ya existe un sprint con el mismo nombre, en este proyecto.
+            </div>
+        {% endif %}
+
+        {% if error == 'camposobligatorios' %}
+            <div class="alert alert-danger alert-dismissible " role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> Los campos son Obligatorios.
+            </div>
+        {% endif %}
+        {% if error == 'fechas' %}
+            <div class="alert alert-danger alert-dismissible " role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> Error al seleccionar las Fechas de Inicio y Fin de Sprint.
+            </div>
+        {% endif %}
+        {% if error == 'finalizacion_proyecto' %}
+            <div class="alert alert-danger alert-dismissible " role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> Error en la Fecha de Finalizacion del Sprint, sobrepasa a la fecha de Finalizacion del Proyecto.
+            </div>
+        {% endif %}
+        {% if error == 'inicio_proyecto' %}
+            <div class="alert alert-danger alert-dismissible " role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> Error en la Fecha de Inicio del Sprint, debe ser mayor o igual a la fecha de Inicio del Proyecto.
+            </div>
+        {% endif %}
+          {% if error == 'fin_proyecto' %}
+            <div class="alert alert-danger alert-dismissible " role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> Error en la Fecha de fin del Sprint, debe ser menor o igual a la fecha de fin del Proyecto.
+            </div>
+        {% endif %}
+
+
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <form id="formulario" method="post" action="">{% csrf_token %}
+                    <p><bold>Numero de Sprint:</bold> {{nro_sprint}}</p>
+                    <table class="table table-hover" align="center">
+                        <div align="center">
+
+                            {{ formulario }}
+                        </div>
+                    </table>
+                    <div>
+                        <input type="submit" class="btn btn-info" name="Guardar" value="Guardar">
+                        <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

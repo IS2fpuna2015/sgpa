@@ -1,0 +1,152 @@
+{% extends 'Sistema/principal.html' %}
+
+
+
+{% block content %}
+
+{% if perms.GestiondeTableroKanban.crear_tablero_kanban  %}
+
+<style type="text/css" media="screen">
+    select { width: 100%; margin-right: 20px; }
+</style>
+
+{% if error == 'ningun_usuario' %}
+<div class="alert alert-danger alert-dismissible " role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+    <strong>Error!</strong> Asigne usuarios a los User Stories antes.
+</div>
+{% endif %}
+
+{% if error == 'sprint activo' %}
+<div class="alert alert-danger alert-dismissible " role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+    <strong>Error!</strong> Solo puede existir un sprint activo en todo momento. Concluya el sprint actual para continuar.
+</div>
+{% endif %}
+{% if error == 'Contenido' %}
+<div class="alert alert-danger alert-dismissible " role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+    <strong>Error!</strong> El tablero {{tablero_copy.nombre_tablero}} posee el mismo sprint y flujo, seleccione otro flujo para continuar.
+</div>
+{% endif %}
+
+{% if error == 'Nombre' %}
+<div class="alert alert-danger alert-dismissible " role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+    <strong>Error!</strong> Ya existe un tablero con ese nombre.
+</div>
+{% endif %}
+
+{% if error == 'asigne us' %}
+<div class="alert alert-danger alert-dismissible " role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+    <strong>Error!</strong> Asigne US a algun Sprint que pertenezca al proyecto primero.
+</div>
+{% endif %}
+
+{% if error == 'cree sprint' %}
+<div class="alert alert-danger alert-dismissible " role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+    <strong>Error!</strong> Realice la creacion de un sprint perteneciente al proyecto primero o cambie a estado Activo.
+</div>
+{% endif %}
+
+{% if error == 'asigne flujo' %}
+<div class="alert alert-danger alert-dismissible " role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+    <strong>Error!</strong> Asigne Flujos al proyecto primero.
+</div>
+{% endif %}
+
+{% if error == 'Incompleto' %}
+<div class="alert alert-danger alert-dismissible " role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+    <strong>Error!</strong> Seleccione e ingrese todos los campos requeridos para crear el tablero.
+</div>
+{% endif %}
+
+
+<div  style="text-align: center;" class="jumbotron">
+    <h2>Generacion de tablero kanban para el proyecto {{proyecto.nombre_proyecto}}</h2>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+
+            <form action="" method="post" style="text-align:left; ">{% csrf_token %}
+                <div  class="panel-body jumbotron"  align="center" >
+                    <div align="center" class="table-responsive container">
+
+                        <table class="table table-hover">
+                            <thead>
+                            <tr class="text-info">
+                            </tr>
+                            </thead>
+                            <tbody id="rows" >
+                            <tr  >
+                                <td><label>Nombre del tablero</label></td>
+                                <td><input id="nombre_tablero" type="text" name="nombre_tablero"  value="{{tablero.nombre_tablero}}"></td>
+                            </tr>
+                            <tr>
+                                <td ><label>Seleccione el Sprint</label> </td>
+                                <td>
+                                    <select name="sprint" id="mySelect_sprint" onchange="getSelectedValue();">
+                                        {% for sprint in sprints %}
+                                        <option  name="{{sprint.id}}" value="{{sprint.id}}">{{sprint.nombre_sprint}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td ><label>Seleccione el flujo</label> </td>
+                                <td>
+                                    <select name="flujo" id="mySelect_flujo" onchange="getSelectedValue();">
+                                        {% for flujo in flujos %}
+                                        <option name="{{flujo.id}}" value="{{flujo.id}}">{{flujo.nombre_flujo}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td ><label>Seleccione el estado del tablero</label> </td>
+                                <td>
+                                    <select name="estado" id="mySelect_estado_tablero" onchange="getSelectedValue();">
+                                        <option value="abierto">Abierto (Modificable)</option>
+                                        <!-- <option value="cerrado">Cerrado  (No modificable)</option> -->
+                                    </select>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-2"></div>
+</div>
+<div align="center">
+    <input type="submit" class="btn btn-info"  name="Guardar" value="Guardar">
+    <a href="{% url 'listar_proyecto_kanban' %}" class="btn btn-info">Cancelar</a>
+</div>
+
+</form>
+{% endif  %}
+{%  if perms.GestiondeTableroKanban.crear_tablero_kanban == False %}
+<div  style="text-align: center;" class="jumbotron">
+    <h2>No posee permisos para acceder a esta seccion</h2>
+    <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+</div>
+{% endif  %}
+
+{% endblock %}

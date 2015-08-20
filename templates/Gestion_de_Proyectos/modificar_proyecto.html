@@ -1,0 +1,150 @@
+{% extends 'Sistema/principal.html' %}
+
+{% block content %}
+
+    <div style="text-align: center;" class="jumbotron">
+        <h2>Modificacion de Proyectos</h2>
+        {% if error == "estado_activo_pendiente" %}
+            <div align="center">
+                <div class="alert alert-danger alert-dismissible " role="alert" style="width:50%;">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <strong>Error!</strong> No puede seleccionar el estado pendiente si el proyecto estaba activo.
+                </div>
+            </div>
+        {% endif %}
+
+
+        {% if error == "sprints_activos_o_pendientes" %}
+            <div align="center">
+                <div class="alert alert-danger alert-dismissible " role="alert" style="width:50%;">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <strong>Error!</strong> Existen sprints activos o en estado pendiente.
+                </div>
+            </div>
+        {% endif %}
+
+        {% if error == "us_activos_o_pendientes" %}
+            <div align="center">
+                <div class="alert alert-danger alert-dismissible " role="alert" style="width:50%;">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <strong>Error!</strong> Existen User Stories activos o en estado pendiente.
+                </div>
+            </div>
+        {% endif %}
+
+        {% if error == 'fechas' %}
+            <div class="alert alert-danger alert-dismissible " role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> Error al seleccionar las Fechas de Inicio y Fin de Proyecto.
+            </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="panel-body jumbotron" align="center">
+
+                <form id="formularioproyecto" method="post" action="">{% csrf_token %}
+                    <div class="col-md-6">
+
+                        <div id="datosproyecto" align="center" class=" container">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr class="text-info">
+                                    <th style="text-align: center;">Datos Proyecto</th>
+                                </tr>
+                                </thead>
+                                <tbody id="rowsdatosproyecto">
+                                <tr>
+                                    <td><label>Nombre de Proyecto</label></td>
+                                    <td>{{ formulario.nombre_proyecto }}</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Codigo de Proyecto</label></td>
+                                    <td>{{ formulario.codigo_proyecto }}</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Cliente</label></td>
+                                    <td>
+                                        <div style=" border: 1px solid #000000; OVERFLOW-Y:scroll; WIDTH:200px; text-align: left; HEIGHT:60px; background-color:#ffffff;">{{ formulario.cliente }}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label>Descripcion del Proyecto</label></td>
+                                    <td>{{ formulario.descripcion_proyecto }}</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Fecha de Inicio</label></td>
+                                    <td>{{ formulario.fecha_inicio }}</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Fecha de Finalizacion</label></td>
+                                    <td>{{ formulario.fecha_finalizacion }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td><label>Estado del Proyecto</label></td>
+                                    <td>{{ formulario.estado_proyecto }}</td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div id="participantesflujosproyecto" align="center" class=" container">
+
+                            {% if perms.GestiondeProyectos.modificar_scrummaster %}
+                                <table id="scrummaster" class="table">
+                                    <thead>
+                                    <tr class="text-info">
+                                        <th style="text-align: center;">Scrum Master</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="rowsdatosproyecto" align="center">
+                                    <tr>
+                                        <td>
+                                            <div id="scrollescrummaster"
+                                                 style=" border: 1px solid #000000; OVERFLOW-Y:scroll; WIDTH:250px; text-align: left; HEIGHT:120px; background-color:#ffffff">{{ formulario.scrum_master }}</div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            {% else %}
+                               <br/>
+                            {% endif %}
+
+
+                            <table id="equipodesarrollo" class="table">
+                                <thead>
+                                <tr class="text-info">
+                                    <th style="text-align: center;">Equipo de Trabajo</th>
+                                </tr>
+                                </thead>
+                                <tbody id="rowsdatosproyecto" align="center">
+
+                                <tr>
+                                    <td>
+                                        <div id="scrollequipodesarrollo"
+                                             style=" border: 1px solid #000000; OVERFLOW-Y:scroll; WIDTH:250px; text-align: left; HEIGHT:120px; background-color:#ffffff">{{ formulario.equipo_desarrollo }}</div>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div align="center" class="col-md-12">
+                        <input type="submit" class="btn btn-info" name="Guardar" value="Guardar">
+                        <!--<a class=" btn btn-info" href="{% url 'listar_proyecto' %}">Cancelar</a>-->
+                        <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Cancelar">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

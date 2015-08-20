@@ -1,0 +1,84 @@
+{% extends 'Sistema/principal.html' %}
+
+{% block content %}
+
+    {% if error == 'cantidad_diferente_' %}
+            <div class="alert alert-danger alert-dismissible " role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> Debe seleccionar la misma cantidad de usuarios responsables y User Stories
+            </div>
+        {% endif %}
+
+<div class="jumbotron">
+    <div align="center">
+        <h2>Asignacion de US a sprint {{sprint.nombre_sprint}}</h2><br>
+        Los US que son listados poseen una duracion menor a la del sprint, que actualmente dura {{duracion_sprint}} dias.<br><br><br>
+    </div>
+    <form id="" method="post" action="">{% csrf_token %}
+    <div class="row">
+
+
+            <div class="col-md-12">
+
+                <div style=" border: 1px solid #000000; OVERFLOW-Y:scroll; WIDTH:100%; text-align: left; HEIGHT:330px; background-color:#ffffff">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr class="text-info">
+                            <th  style="text-align: center;">US disponibles</th>
+                            <th  style="text-align: center;">Duracion del US en dias</th>
+                            <th  style="text-align: center;">Prioridad de US</th>
+                            <th  style="text-align: center;">Seleccion de usuario responsable</th>
+                            <th  style="text-align: center;">Seleccion el flujo</th>
+                            <th  style="text-align: center;">Asignar</th>
+                        </tr>
+                        </thead>
+                        <tbody  id="rows" name="list" multiple="multiple" >
+                        {% for us in userstories %}
+                        {% if us.size <= duracion_sprint and us.estado.upper != "APROBADO"%}
+                        <tr >
+                            <td  class="datos" align="center" name="us_nombre" value="{{us.id}}">{{us.nombre.lower}}</td>
+                            <td  class="datos" align="center" name="us_size" value="{{us.id}}">{{us.size}}</td>
+                            <td  class="datos" align="center" name="us_size" value="{{us.id}}" >
+                                {% if us.prioridad == 'ALTA'%}
+                                <div class="btn btn-danger">{{us.prioridad.lower}}</div>
+                                {%else%}
+                                    {{us.prioridad.lower }}
+                                {% endif %}
+
+                            </td>
+                            <td  class="datos" align="center">
+                                <select style="width:70%;" name="usuario" id="mySelect_sprint" onchange="getSelectedValue();">
+                                    <option  name="usuario" value="---">----</option>
+                                    {% for usuario in equipo %}
+                                    <option  name="usuario" value="{{usuario.id}}">{{usuario.username}}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td  class="datos" align="center">
+                                <select style="width:70%;" name="flujo" id="mySelect_sprint" onchange="getSelectedValue();">
+                                    <option  name="flujo" value="---">----</option>
+                                    {% for flujo in flujos %}
+                                    <option  name="flujo" value="{{flujo.id}}">{{flujo.nombre_flujo}}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td><input type="checkbox"  name="agregar" value="{{us.id}}"> </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                        </tbody>
+                        </table>
+                </div>
+            </div>
+
+    </div> <br>
+            <div align="center">
+                 <input type="submit" class="btn btn-info" name="Guardar" value="Guardar">
+                <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+            </div>
+        </form>
+</div>
+{% endblock %}
+
+

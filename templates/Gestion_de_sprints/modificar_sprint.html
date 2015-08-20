@@ -1,0 +1,107 @@
+{% extends 'Sistema/principal.html' %}
+
+{% block content %}
+{{ formulario.media }}
+<div style="text-align: center;" class="jumbotron">
+    <h2>Modificacion de Sprint</h2>
+    {% if error == 'camposobligatorios' %}
+            <div class="alert alert-danger alert-dismissible " role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> Los campos son Obligatorios.
+            </div>
+    {% endif %}
+
+    {% if error == 'fechas' %}
+            <div class="alert alert-danger alert-dismissible " role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> Error al seleccionar las Fechas de Inicio y Fin de Sprint.
+            </div>
+        {% endif %}
+       {% if error == 'activo' %}
+            <div class="alert alert-danger alert-dismissible " role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> Finalice los sprint que se encuentren activos antes de poner este en estado activo.
+            </div>
+        {% endif %}
+        {% if error == 'finalizacion_proyecto' %}
+            <div class="alert alert-danger alert-dismissible " role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> Error en la Fecha de Finalizacion del Sprint, sobrepasa a la fecha de Finalizacion del Proyecto.
+            </div>
+        {% endif %}
+        {% if error == 'inicio_proyecto' %}
+            <div class="alert alert-danger alert-dismissible " role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> Error en la Fecha de Inicio del Sprint, debe ser mayor o igual a la fecha de Inicio del Proyecto.
+            </div>
+        {% endif %}
+        {% if error == 'fin_proyecto' %}
+            <div class="alert alert-danger alert-dismissible " role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> Error en la Fecha de fin del Sprint, debe ser menor o igual a la fecha de fin del Proyecto.
+            </div>
+        {% endif %}
+        {% if error == 'estado' %}
+            <div class="alert alert-danger alert-dismissible " role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> No puede volver al estado de pendiente si poseia el estado activo, seleccione otro estado.
+            </div>
+        {% endif %}
+        {% if error == 'estado_salteado' %}
+            <div class="alert alert-danger alert-dismissible " role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> Para poder guardar el sprint con estado finalizado debe pasar antes por el estado activo.
+            </div>
+        {% endif %}
+
+    <div class="row">
+        <div class="col-md-2"></div>
+
+
+        <div class="col-md-8">
+            <form id="formulario" method="post" action="">{% csrf_token %}
+                <table class="table table-hover">
+                    <thead>
+                    <tr class="text-info" >
+                        <th style="text-align: center;">Informacion</th>
+                    </tr>
+                    </thead>
+                    <tbody id="rows" >
+                    <tr  >
+                        <td><label>Nombre del Sprint</label></td>
+                        <td><input id="nombre_sprint" type="text" name="nombre_sprint"  value="{{sprint.nombre_sprint}}"></td>
+                    </tr>
+                    <tr>
+                        <td><label>Fecha de Inicio del Sprint</label></td>
+                        <td>{{ formulario.fecha_inicio }}</td>
+                    </tr>
+                    <tr>
+                        <td><label>Fecha de Finalizacion del Sprint</label></td>
+                        <td>{{ formulario.fecha_fin|default:sprint.fecha_fin }}</td>
+                    </tr>
+                    <tr>
+                        <td><label>Estado del Sprint</label></td>
+                        <td>{{ formulario.estado|default:sprint.estado }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div align="center">
+
+                    <input type="submit" class="btn btn-info" name="Guardar" value="Guardar">
+                    <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+                </div>
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+{% endblock %}

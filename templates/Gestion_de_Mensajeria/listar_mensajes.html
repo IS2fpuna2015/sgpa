@@ -1,0 +1,59 @@
+{% extends 'Sistema/principal.html' %}
+{% block content %}
+
+    <div style="text-align: center;" class="panel-body jumbotron">
+        <h2>Lista de Mensajes</h2>
+        <br>
+
+        <div style=" display:inline;">
+            <form method='post'>{% csrf_token %}
+                {{ formulario }}
+                <input type='submit' value='Buscar'>
+
+            </form>
+        </div>
+        <div class="panel-body jumbotron">
+            <div class="table-responsive">
+                <div style="height: 330px; overflow: auto">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr class="text-info">
+                            <th style="text-align: center;">Asunto</th>
+                            <th style="text-align: center;">Remitente</th>
+                            <th style="text-align: center;">Hora</th>
+                            <th style="text-align: center;">Fecha</th>
+                            <th style="text-align: center;">Estado</th>
+                            {% if perms.GestiondeMensajeria.visualizar_mensaje %}
+                                <th style="text-align: center;">Leer Mensaje</th>{% endif %}
+                        </tr>
+                        </thead>
+                        <tbody id="rows">
+                        {% for mensaje_obj in mensajes %}
+                            <tr>
+                                <td>{{ mensaje_obj.asunto }}</td>
+                                <td>{{ mensaje_obj.remitente }}</td>
+                                <td>{{ mensaje_obj.fecha_envio | time:'H:i' }}</td>
+                                <td>{{ mensaje_obj.fecha_envio | date:'d/m/y' }}</td>
+                                {% if mensaje_obj.leido %}
+                                    <td>Leido</td>
+                                {% else %}
+                                    <td>Nuevo</td>
+                                {% endif %}
+                                {% if perms.GestiondeMensajeria.visualizar_mensaje %}
+                                    <td><a href="{% url 'visualizar_mensaje' mensaje_obj.id %}"
+                                           class="btn btn-info">Leer</a>
+                                    </td>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div align="center">
+                <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'Sistema/principal.html' %}
+
+{% block content %}
+<div  style="text-align: center;" class="jumbotron">
+    <h2>Desea Eliminar {{ nombre }} ?</h2><br>
+
+    <form action="" method="post"  style="text-align:left; ">{% csrf_token %}
+        <div class="alert alert-danger" role="alert" style="text-align: center">
+            <input type="submit" class="btn btn-primary" name="Aceptar" value="Aceptar">
+            <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Cancelar">
+        </div>
+    </form>
+</div>
+{% endblock %}

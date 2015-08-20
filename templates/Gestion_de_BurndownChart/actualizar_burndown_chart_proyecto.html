@@ -1,0 +1,50 @@
+{% extends 'Sistema/principal.html' %}
+
+
+
+{% block content %}
+<div class="jumbotron">
+
+    {% if error == 'horas' %}
+    <div class="alert alert-danger alert-dismissible " role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Error!</strong> No ingreso la cantidad de horas trabajadas.
+    </div>
+    {% endif %}
+    <h3 class="text-info" align="center">Informacion del proyecto {{proyecto.nombre_proyecto}}</h3>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <form method="POST" action="#">{% csrf_token %}
+            <div class="col-md-6">
+                <table class="table table-hover" align="center">
+                    <thead>
+                    <tr class="text-info">
+                        <th > <label style="text-align:center;">Informacion de sprint {{proyecto.nombre_proyecto}} - Dia {{dia_actual}}</label> </th>
+                    </tr>
+                    </thead>
+                    <tbody >
+                    <tr>
+                        <td><label>Dias trabajados en el Proyecto</label></td>
+                        <td><label>{{fecha}}</label></td>
+                    </tr>
+                    <tr>
+                        <td><label>Dias restantes en el Proyecto</label></td>
+                        <td><label>{{dias_restantes}}</label></td>
+                    </tr>
+                    <tr>
+                        <td><label>Horas trabajadas el dia de hoy: </label></td>
+                        <td><input type="number" name="horas_trabajadas"  value="{{burn.horas_trabajadas}}" min="0" max="9" ></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div align="center">
+                    <input type="submit"  class="btn btn-info" value="Guardar">
+                    <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}

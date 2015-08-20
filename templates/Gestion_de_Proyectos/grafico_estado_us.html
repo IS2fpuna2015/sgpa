@@ -1,0 +1,76 @@
+{% extends 'Sistema/principal.html' %}
+
+
+
+{% block content %}
+
+<div  style="text-align: center;" class="panel-body jumbotron">
+
+<script type="text/javascript">
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Estado de {{us.nombre}}'
+        },
+        xAxis: {
+            categories: ['Tiempo en dias'],
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Dias',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' Dias'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 100,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'Tiempo Optimo',
+            data: [{{us.size}} ]
+        }, {
+            name: 'Tiempo Real',
+            data: [ {{tiempo_real}} ]
+        } ]
+    });
+});
+
+</script>
+
+<div id="container" style="min-width: 310px; max-width: 100%; height: auto; margin: 0 auto"></div>
+<br>
+    <div align="center">
+        <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+    </div>
+</div>
+{% endblock %}

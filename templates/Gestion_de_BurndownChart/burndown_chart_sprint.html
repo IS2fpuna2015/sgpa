@@ -1,0 +1,83 @@
+{% extends 'Sistema/principal.html' %}
+
+
+
+{% block content %}
+<div  style="text-align: center;" class="panel-body jumbotron">
+<script type="text/javascript">
+
+$(document).ready(function() {
+    var categories = new Array();
+
+    $('#contenedor').highcharts({
+        title: {
+            text: 'Burndown Chart',
+            x: -20 //center
+        },
+        subtitle: {
+            text: ' {{sprint.nombre_sprint}}',
+            x: -20
+        },
+        xAxis: {
+            title: {
+                text: 'Duracion del sprint {{dias}} dias.'
+            },
+            categories:[
+                {% for item in lista_dias %}
+                    '{{item}}',
+                {% endfor %}
+                ]
+        },
+        yAxis: {
+            floor: 0,
+            ceiling: {{duracion_total_us}},
+            title: {
+                text: 'Horas Faltantes'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }],
+        },
+         tooltip: {
+            valueSuffix: ' Horas'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: 'Optimo',
+            data: [
+                {% for item in duracion_optima %}
+                    {{item}},
+                {% endfor %}
+            ]
+        }, {
+            name: 'Real',
+            data: [
+                {% for item in linea_trabajada %}
+                        {{item}},
+                {% endfor %}
+
+            ]
+        }  ]
+    });
+});
+
+
+
+</script>
+
+
+<div id="contenedor">
+
+</div>
+    <div align="center">
+        <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+    </div>
+</div>
+{% endblock %}

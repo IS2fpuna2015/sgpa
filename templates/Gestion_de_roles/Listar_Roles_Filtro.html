@@ -1,0 +1,49 @@
+{% extends 'Sistema/principal.html' %}
+
+
+
+{% block content %}
+
+
+<div  style="text-align: center;" class="panel-body jumbotron">
+    <div  style=" display:inline;"  >
+        <form method='post'>{% csrf_token %}
+            {{ form }}
+            <input type='submit' value='Buscar'>
+        </form>
+    </div>
+    {% if usuario != 'NULL' %}
+    <div class="panel-body jumbotron">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr class="text-info">
+                    <th  style="text-align: center;">Nombre de Rol</th>
+                    {% if perms.GestiondeRolesyPermisos.modificar_rol  %}<th  style="text-align: center;">Modificar Rol</th>{% endif %}
+                    {% if perms.GestiondeRolesyPermisos.consulta_rol  %}<th  style="text-align: center;">Consulta de Rol</th>{% endif %}
+                    {% if perms.GestiondeRolesyPermisos.eliminar_rol  %}<th  style="text-align: center;">Eliminar Rol</th>{% endif %}
+                </tr>
+                </thead>
+                <tbody  id="rows">
+                {% for rol_ciclo in roles %}
+                <tr id="{{ user.id }}">
+                    <td  class="datos">{{ rol_ciclo.name }}</td>
+                    {% if perms.GestiondeRolesyPermisos.modificar_rol  %}<td><a href="{% url 'modificarrol' rol_ciclo.id %}" class="btn btn-info">Modificar</a></td>{% endif %}
+                    {% if perms.GestiondeRolesyPermisos.consulta_rol%}<td><a href="{% url 'consultarrol' rol_ciclo.id %} " class="btn btn-info">Consultar</a></td>{% endif %}
+                    {% if perms.GestiondeRolesyPermisos.eliminar_rol  %}<td><a href="{% url 'eliminarrol' rol_ciclo.id %} " class="btn btn-info">Eliminar</a></td>{% endif %}
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% else %}
+    <p>Seleccion Invalida</p>
+    {% endif %}
+    <div align="center">
+        <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+    </div>
+</div>
+
+
+{% endblock %}

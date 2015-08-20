@@ -1,0 +1,124 @@
+{% extends 'Sistema/principal.html' %}
+
+{% block content %}
+
+<div style="text-align: center;" class="jumbotron">
+    <h2>Creacion de User Story en el Proyecto {{ nombre_proyecto }}</h2>
+    {% if error == 'campos' %}
+    <div class="alert alert-danger alert-dismissible " role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <strong>Error!</strong> Todos los campos son Obligatorios!.
+    </div>
+    {% endif %}
+    {% if error == 'nombre' %}
+    <div class="alert alert-danger alert-dismissible " role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <strong>Error!</strong>Ya existe un US con el mismo nombre en este proyecto, ingrese otro nombre.
+    </div>
+    {% endif %}
+
+    <div class="panel-body jumbotron" align="center">
+
+        <form id="formulariouserstory" method="post" action="" enctype="multipart/form-data">{% csrf_token %}
+
+            <div id="datosuserstory" align="center" class="table-responsive container col-md-12">
+                <table class="table table-hover">
+                    <thead>
+                    <tr class="text-info">
+                        <th style="text-align: center;">Datos User Story</th>
+                    </tr>
+                    </thead>
+                    <tbody id="rowsdatosuserstory">
+                    <tr>
+                        <td><label>Nombre: </label></td>
+                        <td>{{ formulario.nombre }}</td>
+                    </tr>
+                    <tr>
+                        <td><label>Descripcion: </label></td>
+                        <td>{{ formulario.descripcion }}</td>
+                    </tr>
+                    <tr>
+                        <td><label>Prioridad: </label></td>
+                        <td>{{ formulario.prioridad }}</td>
+                    </tr>
+                    <tr>
+                        <td><label>Valor Tecnico: </label></td>
+                        <td>{{ formulario.valor_tecnico }}</td>
+                    </tr>
+                    <tr>
+                        <td><label>Valor de Negocio: </label></td>
+                        <td>{{ formulario.valor_de_negocio }}</td>
+                    </tr>
+                    <tr>
+                        <td><label>Size: </label></td>
+                        <td>{{ formulario.size }}</td>
+                    </tr>
+                    <tr>
+                        <td><label>Estado: </label></td>
+                        <td>{{ "Pendiente" }}</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <!--
+            <div id="usuarioasignado" align="center" class="table-responsive container col-md-6">
+                <table class="table">
+                    <thead>
+                    <tr class="text-info">
+                        <th style="text-align: center;">Usuario Asignado</th>
+                    </tr>
+                    </thead>
+                    <tbody align="center">
+                    <tr>
+                        <td>
+                            <div id="scrollusuarioasignado"
+                                 style=" border: 1px solid #000000; OVERFLOW-Y:scroll; WIDTH:250px; text-align: left; HEIGHT:120px; background-color:#ffffff">{{ formulario.usuario_asignado }}</div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            -->
+
+            <div align="center" class="col-md-12">
+                <input type="submit" class="btn btn-info" name="Guardar" value="Guardar">
+
+                <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+                <!--<a class="btn btn-info"  href="{% url 'listar_proyecto_us'  %}">Volver</a>-->
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal">
+                    Subir Archivo
+                </button>
+            </div>
+
+    </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Subir archivo...</h4>
+            </div>
+            <div class="modal-body">
+
+                {{ form_popup.as_p }}
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-info" name="Upload" value="Upload">Guardar</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'Sistema/principal.html' %}
+
+{% block content %}
+
+<div  style="text-align: center;" class="panel-body jumbotron">
+    <h2>Product Backlog de {{nombre_proyecto}}</h2>
+    <div  style=" display:inline;"  >
+{#        <form method='post'>{% csrf_token %}#}
+{#            {{ formulario }}#}
+{#            <input type='submit' value='Buscar'>#}
+{#        </form>#}
+          <a href="{% url 'reporteproductbacklog' id_proyecto %}"
+                           class="btn btn-info">Reporte Pdf Product Backlog</a>
+    </div>
+    <div class="panel-body jumbotron">
+        <div class="table-responsive">
+            <div style="height: 380px; overflow: auto">
+                <table class="table table-hover">
+                    <thead>
+                    <tr class="text-info" >
+                        <th style="text-align: center;">Nombre</th>
+                        <th style="text-align: center;">Usuario</th>
+                        <th style="text-align: center;">Prioridad</th>
+                        <th style="text-align: center;">Sprint</th>
+                        <th style="text-align: center;">Horas E.</th>
+                        <th style="text-align: center;">Horas T.</th>
+                        <th style="text-align: center;">Estado</th>
+                        <th style="text-align: center;">% Realizado</th>
+                        {% if perms.GestiondeProyectos.consultar_estado_us %}<th style="text-align: center;">Grafico</th>{%endif%}
+                    </tr>
+                    </thead>
+                    <tbody  id="rows">
+                    {% for item in product_backlog_items %}
+                    <tr>
+                        <td>{{ item.nombre }}</td>
+                        <td>{{ item.responsable }}</td>
+                        <td>{{ item.prioridad }}</td>
+                        <td>{{ item.sprint }}</td>
+                        <td>{{ item.horas_estimadas | floatformat }}</td>
+                        <td>{{ item.horas_trabajadas | floatformat}}</td>
+                        <td >{{ item.estado }}</td>
+                        <td>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info" style="width: {{item.porcentaje_realizado}}%;">
+                                </div>
+                                <span>{{item.porcentaje_realizado}}%</span>
+                            </div>
+                        </td>
+                        {% if perms.GestiondeProyectos.consultar_estado_us %}
+                         <td ><a href="{% url 'grafico_us_estado'  item.id %}"
+                           class="btn btn-info">Grafico de estado</a></td></td>
+                        {%endif%}
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

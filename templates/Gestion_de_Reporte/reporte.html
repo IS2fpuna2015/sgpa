@@ -1,0 +1,15 @@
+{% extends 'Sistema/principal.html' %}
+
+{% block content %}
+
+    <div class="panel-body jumbotron" align="center">
+        <h2>Seleccione el tipo de reporte</h2>
+        <form  method="post" action="">{% csrf_token %}
+            <div style="height:30px;"></div>
+            <input type="submit" class="btn btn-info" name="r1" value="Reporte de equipo"><br><br>
+            <input type="submit" class="btn btn-info" name="r2" value="Reporte de usuario"><br><br>
+            <input type="submit" class="btn btn-info" name="r3" value="Reporte de actividades"><br><br>
+            <input type="submit" class="btn btn-info" name="r6" value="Reporte de Tiempo estimado de proyecto"><br><br>
+        </form>
+    </div>
+{% endblock %}

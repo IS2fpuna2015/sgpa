@@ -1,0 +1,80 @@
+{% extends 'Sistema/principal.html' %}
+
+
+
+{% block content %}
+<style type="text/css" media="screen">
+    select { width: 100px; margin-right: 20px; }
+</style>
+
+
+
+<div  style="text-align: center;" class="jumbotron">
+    <h2>Crear Actividad</h2>
+    {% if error == 'vacio' %}
+    <div class="alert alert-danger alert-dismissible " role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Error!</strong> Complete todos los datos antes de guardar.
+    </div>
+    {%endif%}
+
+    {% if error == 'existente' %}
+    <div class="alert alert-danger alert-dismissible " role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Error!</strong> Actividad ya existente en este flujo, cada actividad debe ser &uacute;nica.
+    </div>
+    {%endif%}
+
+    {% if error == 'ninguno' %}
+    <div class="alert  alert-success alert-dismissible " role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Actividad creada de forma exitosa.</strong> .
+    </div>
+    {%endif%}
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+
+
+            <form action="" method="post" style="text-align:left; ">{% csrf_token %}
+                <div  class="panel-body jumbotron"  align="center" >
+                    <div align="center" class="table-responsive container">
+
+                        <table class="table table-hover">
+                            <thead>
+                            <tr class="text-info">
+                                <th style="text-align: center;">Informacion</th>
+                            </tr>
+                            </thead>
+                            <tbody id="rows" >
+                            <tr  >
+                                <td><label>Nombre de la Actividad</label></td>
+                                <td>{{ formulario.nombre_actividad }}</td>
+                            </tr>
+
+                            <tr>
+                                <td><label>Estado de Actividad</label></td>
+                                <td>{{ formulario.estado_actividad }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+        </div>
+        <div class="col-md-2"></div>
+
+    </div>
+</div>
+
+
+
+<div align="center">
+    <input type="submit" class="btn btn-info"  name="Guardar" value="Guardar">
+    <input type="submit" class="btn btn-info" name="GuardarContinuar" value="Guardar y Continuar">
+    <!--<a class="btn btn-info" href="{% url 'listar_actividad' id_proyecto id_flujo  %}" class="btn btn-info">Volver</a>-->
+    <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Volver">
+
+</div>
+
+</form>
+{% endblock %}

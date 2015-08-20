@@ -1,0 +1,118 @@
+{% extends 'Sistema/principal.html' %}
+
+
+
+{% block content %}
+<style type="text/css" media="screen">
+    select { width: 100px; margin-right: 20px; }
+</style>
+
+
+
+<div  style="text-align: center;" class="jumbotron">
+    <h2>Registro de usuario</h2>
+    {% if error == 'vacio' %}
+    <div class="alert alert-danger alert-dismissible " role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Error!</strong> Complete todos los datos antes de guardar.
+    </div>
+    {%endif%}
+
+    {% if error == 'existente' %}
+    <div class="alert alert-danger alert-dismissible " role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Error!</strong> Usuario ya existente, ingrese otro.
+    </div>
+    {%endif%}
+
+       {% if error == 'roles' %}
+    <div class="alert alert-danger alert-dismissible " role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Error!</strong> Debe seleccionar al menos un rol.
+    </div>
+    {%endif%}
+
+    {% if error == 'ninguno' %}
+    <div class="alert  alert-success alert-dismissible " role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Usuario creado de forma exitosa.</strong> .
+    </div>
+    {%endif%}
+
+
+    <form action="" method="post" style="text-align:left; ">{% csrf_token %}
+        <div  class="panel-body jumbotron"  align="center" >
+            <div align="center" class="table-responsive container col-md-6">
+
+                <table class="table table-hover">
+                    <thead>
+                    <tr class="text-info">
+                        <th style="text-align: center;">Informacion</th>
+                    </tr>
+                    </thead>
+                    <tbody id="rows" >
+                    <tr  >
+                        <td><label>Nombre de usuario en el sistema</label></td>
+                        <td><input id="username" type="text" name="username"  value="{{usuario.username}}"></td>
+                    </tr>
+                    <tr>
+                        <td ><label>Nombre de usuario real</label> </td>
+                        <td><input id="firstname" type="text" name="firstname"  value="{{usuario.first_name}}"> </td>
+                    </tr>
+                    <tr>
+                        <td ><label>Email</label> </td>
+                        <td><input id="email" type="email" name="email"  value="{{usuario.email}}"> </td>
+                    </tr>
+                    <tr>
+                        <td><label>Apellido</label> </td>
+                        <td><input id="lastname" type="text" name="lastname"  value="{{usuario.last_name}}"> </td>
+                    </tr>
+                    <tr>
+                        <td><label>Password</label></td>
+                        <td><input id="password" type="password" name="password" value="{{usuario.password}}" > </td>
+                    </tr>
+                    <tr>
+                        <td><label>Usuario activo</label></td>
+                        <td>
+                            <select name="activo" id="mySelect" onchange="getSelectedValue();">
+                                <option value="false">No activo</option>
+                                <option value="true">Activo</option>
+                            </select>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-responsive container col-md-6" >
+                <table class="table table-hover">
+                    <thead>
+                    <tr class="text-info">
+                        <th  style="text-align: center;">Rol disponible</th>
+                        <th  style="text-align: center;">Asignar</th>
+                    </tr>
+                    </thead>
+                    <tbody  id="rows" name="list" multiple="multiple" >
+                    {% for item in disponibles %}
+                        <tr value="{{ user.id }}">
+                            <td  class="datos" align="center" value="{{item.id}}">{{item.name}}</td>
+                            <td><input type="checkbox"  name="agregar" value="{{item.id}}"> </td>
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</div>
+
+
+
+<div align="center">
+    {% if perms.GestiondeUsuarios.crear_usuario %}<input type="submit" class="btn btn-info"  name="Guardar" value="Guardar">{%endif%}
+    <input type="reset" class="btn btn-info" value="Reestablecer Datos">
+    <input type="button" class="btn btn-info" onclick="window.history.back()" name="Volver" value="Cancelar">
+</div>
+
+</form>
+{% endblock %}
